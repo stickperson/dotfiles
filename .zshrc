@@ -1,7 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/joe/.oh-my-zsh
 set term=xterm-256color
-eval "$(boot2docker shellinit)"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -52,7 +51,7 @@ plugins=(git)
 # User configuration
 
 # I guess zsh setup looked at my current PATH to generate the following line.
-export PATH="/usr/local/heroku/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,6 +84,7 @@ export KEYTIMEOUT=1
 # Aliases
 alias bim='vim'
 alias c='clear'
+alias dps='docker ps -a'
 alias de='docker exec -it'
 alias l='less'
 alias ll='ls -la'
@@ -93,3 +93,5 @@ alias tmxa='tmux attach-session -t'
 alias tmxl='tmux list-sessions'
 alias tmxk='tmux kill-session -t'
 alias vi='vim'
+
+bindkey "^R" history-incremental-search-backward
