@@ -2,6 +2,10 @@
 export ZSH=/Users/joe/.oh-my-zsh
 set term=xterm-256color
 
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -84,8 +88,6 @@ export KEYTIMEOUT=1
 # Aliases
 alias bim='vim'
 alias c='clear'
-alias dps='docker ps -a'
-alias de='docker exec -it'
 alias dl='docker logs -f'
 alias htop='sudo htop'
 alias l='less'
@@ -95,5 +97,13 @@ alias tmxa='tmux attach-session -t'
 alias tmxl='tmux list-sessions'
 alias tmxk='tmux kill-session -t'
 alias vi='vim'
+
+dec(){
+    command docker exec -it $1 /bin/bash;
+}
+
+dps(){
+    command docker ps | perl -ne '@cols = split /\s{2,}/, $_; printf "$cols[0]     $cols[6]\n"';
+}
 
 bindkey "^R" history-incremental-search-backward
