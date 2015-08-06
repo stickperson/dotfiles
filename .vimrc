@@ -1,4 +1,5 @@
-"Vundle start
+"Note to self: Check out the base16 repo if vim colorschemes are weird
+""Vundle start
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -6,17 +7,17 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'AutoComplPop'
-Plugin 'syntastic'
 Plugin 'vim-sensible'
+Plugin 'jelera/vim-javascript-syntax'
 call vundle#end() 
 filetype plugin indent on
 "Vundle end
 set t_Co=256
 set term=screen-256color
-execute pathogen#infect()
-execute pathogen#helptags()
 syntax on
-colorscheme tomorrow-night
+"colorscheme tomorrow-night
+set background=light
+colorscheme base16-atelierdune
 set clipboard=unnamed
 set backspace=indent,eol,start
 set hlsearch
@@ -35,30 +36,21 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype css setlocal ts=2 sts=2 sw=2
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-"disable scss checker
-let g:syntastic_scss_checkers = ['']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
 
 "emmet stuff
 let g:user_emmet_leader_key='<C-N>'
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-
-let g:syntastic_python_flake8_args = "--ignore=E501"
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 nnoremap <CR> :noh<CR><CR>
+
+au FileType javascript call JavaScriptFold()
 
 if has("autocmd")
   autocmd BufReadPost *
   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal! g'\"" |
   \ endif
+  "following line unfolds all folds when opening file
+  au BufRead * normal zR
 endif
