@@ -2,9 +2,20 @@
 export ZSH=/Users/joe/.oh-my-zsh
 set term=xterm-256color
 
+# Source external files 
+if [ -f ~/.zsh/mongo ]; then
+    source ~/.zsh/mongo
+fi
+
+if [ -f ~/.zsh/work ]; then
+    source ~/.zsh/work
+fi
+
+stty -ixon -ixoff
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
+
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -83,20 +94,32 @@ source $ZSH/oh-my-zsh.sh
 
 # vim bindings
 bindkey -v
+bindkey -v '^?' backward-delete-char
 export KEYTIMEOUT=1
 
 # Aliases
 alias bim='vim'
 alias c='clear'
+alias dps='docker ps -a'
+alias de='docker exec -it'
 alias dl='docker logs -f'
+alias ez='vim ~/.zshrc'
 alias htop='sudo htop'
 alias l='less'
 alias ll='ls -la'
+alias src='source ~/.zshrc'
 alias tmx='tmux new -s'
 alias tmxa='tmux attach-session -t'
 alias tmxl='tmux list-sessions'
 alias tmxk='tmux kill-session -t'
 alias vi='vim'
+
+# Google calendar
+alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
+alias gcw='gcalcli calw 2'
+
+# Search history
+bindkey "^R" history-incremental-search-backward
 
 dec(){
     command docker exec -it $1 /bin/bash;
@@ -106,4 +129,7 @@ dps(){
     command docker ps | perl -ne '@cols = split /\s{2,}/, $_; printf "$cols[0]     $cols[6]\n"';
 }
 
-bindkey "^R" history-incremental-search-backward
+gdf()
+{
+    git diff "$@" | less; 
+}
