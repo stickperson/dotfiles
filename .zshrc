@@ -115,8 +115,8 @@ alias tmxk='tmux kill-session -t'
 alias vi='vim'
 
 # Google calendar
-alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
-alias gcw='gcalcli calw 2'
+alias gcala='gcalcli add --calendar "joe.meissler@gmail.com" '
+alias gcw='gcalcli calw 1'
 
 # Search history
 bindkey "^R" history-incremental-search-backward
