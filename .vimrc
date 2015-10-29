@@ -57,10 +57,11 @@ let mapleader = ","
 
 "Pymode
 let g:pymode_lint_checkers = ['pylint']
+let g:pymode_lint = 1
 let g:pymode_run = 1
 let g:pymode_run_bind = '<leader>run'
 let g:pymode_rope = 0
-let g:pymode_lint_ignore = "C0301"
+let g:pymode_lint_ignore = 'C0301,E501,W0511, C0111, W0621'
 
 "Collect static files
 nmap <silent><leader>cs :!python manage.py collectstatic<cr>

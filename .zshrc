@@ -100,13 +100,13 @@ export KEYTIMEOUT=1
 # Aliases
 alias bim='vim'
 alias c='clear'
-alias dps='docker ps -a'
-alias de='docker exec -it'
-alias dl='docker logs -f'
+alias cll='clear & ls -la'
 alias ez='vim ~/.zshrc'
 alias htop='sudo htop'
 alias l='less'
 alias ll='ls -la'
+alias pro='cd ~/projects/'
+alias remove_branches='git branch --merged | grep -v "\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d'
 alias src='source ~/.zshrc'
 alias tmx='tmux new -s'
 alias tmxa='tmux attach-session -t'
@@ -115,19 +115,11 @@ alias tmxk='tmux kill-session -t'
 alias vi='vim'
 
 # Google calendar
-alias gcala='gcalcli add --calendar "joe.meissler@gmail.com" '
-alias gcw='gcalcli calw 1'
+alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
+alias gcw='gcalcli calw 2'
 
 # Search history
 bindkey "^R" history-incremental-search-backward
-
-dec(){
-    command docker exec -it $1 /bin/bash;
-}
-
-dps(){
-    command docker ps | perl -ne '@cols = split /\s{2,}/, $_; printf "$cols[0]     $cols[6]\n"';
-}
 
 gdf()
 {
