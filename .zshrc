@@ -2,11 +2,6 @@
 export ZSH=/Users/joe/.oh-my-zsh
 set term=xterm-256color
 
-# Source external files 
-if [ -f ~/.zsh/mongo ]; then
-    source ~/.zsh/mongo
-fi
-
 if [ -f ~/.zsh/work ]; then
     source ~/.zsh/work
 fi
@@ -15,6 +10,8 @@ stty -ixon -ixoff
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_NDK=/usr/local/Cellar/android-ndk/r10e
 
 
 # Set name of the theme to load.
@@ -98,13 +95,16 @@ bindkey -v '^?' backward-delete-char
 export KEYTIMEOUT=1
 
 # Aliases
+alias acl='ack'
 alias bim='vim'
 alias c='clear'
-alias cll='clear & ls -la'
+alias cll='clear & ls -lah'
+alias curlJson='curl -H "Content-Type: application/json" -X POST'
+alias dev_latest='git checkout dev && git pull origin dev && remove_branches'
 alias ez='vim ~/.zshrc'
 alias htop='sudo htop'
 alias l='less'
-alias ll='ls -la'
+alias ll='ls -lah'
 alias pro='cd ~/projects/'
 alias remove_branches='git branch --merged | grep -v "\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d'
 alias src='source ~/.zshrc'
@@ -116,7 +116,7 @@ alias vi='vim'
 
 # Google calendar
 alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
-alias gcw='gcalcli calw 2'
+alias gcw='gcalcli calw 1'
 
 # Search history
 bindkey "^R" history-incremental-search-backward
@@ -125,3 +125,13 @@ gdf()
 {
     git diff "$@" | less; 
 }
+
+precmd() {
+eval 'if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history | tail -n 1)" >>! ~/Logs/zsh-history-$(date "+%Y-%m-%d").log; fi'
+}
+
+PATH="/Users/joe/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/joe/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/joe/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/joe/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/joe/perl5"; export PERL_MM_OPT;

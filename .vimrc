@@ -1,12 +1,11 @@
 "Note to self: Check out the base16 repo if vim colorschemes are weird
 ""Vundle start
 set nocompatible
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'klen/python-mode'
 Plugin 'AutoComplPop'
 Plugin 'vim-sensible'
 Plugin 'chriskempson/base16-vim'
@@ -16,15 +15,16 @@ Plugin 'davidhalter/jedi-vim'  " Must come after python-mode
 Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'bling/vim-airline'
-Plugin 'bling/vim-bufferline'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 call vundle#end() 
 filetype plugin indent on
 "Vundle end
 set t_Co=256
 set term=screen-256color
 syntax on
-set background=light
-colorscheme base16-atelierdune
+"set background=light
+"colorscheme base16-atelierdune
+colorscheme dracula
 set clipboard=unnamed
 set backspace=indent,eol,start
 set hlsearch
@@ -33,14 +33,18 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set nosmartindent
+set mouse=a
 set statusline=%l
 set statusline+=/
 set statusline+=%L
+set wildignore+=*/node_modules/*
+set tags=tags;
 nnoremap <space> za
 vnoremap <space> zf
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype css setlocal ts=2 sts=2 sw=2
+autocmd Filetype sh set noexpandtab ts=2 sw=2
 
 "syntastic
 set statusline+=%#warningmsg#
@@ -70,6 +74,9 @@ nmap <silent><leader>cs :!python manage.py collectstatic<cr>
 nmap <silent><leader>sp :set paste<cr>
 nmap <silent><leader>snp :set nopaste<cr>
 
+"tag
+nmap <silent><leader>tg :tselect <C-R><C-W><cr>
+
 "emmet stuff
 let g:user_emmet_leader_key='<C-N>'
 
@@ -84,7 +91,6 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 au FileType javascript call JavaScriptFold()
 
 " Sexier tab bar
-" Allow buffers at the top (used with vim-bufferline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#tab_nr_mode = 1
@@ -97,6 +103,8 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+
+autocmd BufWritePre *.js :%s/\s\+$//e
 
 if has("autocmd")
   autocmd BufReadPost *
