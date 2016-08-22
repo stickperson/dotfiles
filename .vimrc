@@ -6,15 +6,16 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'AutoComplPop'
 Plugin 'vim-sensible'
 Plugin 'chriskempson/base16-vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'davidhalter/jedi-vim'  " Must come after python-mode
-Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic' " use with something like flake8
 Plugin 'mxw/vim-jsx'
 Plugin 'bling/vim-airline'
+Plugin 'Valloric/YouCompleteMe' " remember to run install.py. see README.
+Plugin 'kien/ctrlp.vim'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 call vundle#end() 
 filetype plugin indent on
@@ -44,7 +45,7 @@ vnoremap <space> zf
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype css setlocal ts=2 sts=2 sw=2
-autocmd Filetype sh set noexpandtab ts=2 sw=2
+autocmd Filetype sh setlocal noexpandtab ts=2 sw=2
 
 "syntastic
 set statusline+=%#warningmsg#
@@ -59,14 +60,6 @@ let g:syntastic_ignore_files = ['**.*.js']
 
 let mapleader = ","
 
-"Pymode
-let g:pymode_lint_checkers = ['pylint']
-let g:pymode_lint = 1
-let g:pymode_run = 1
-let g:pymode_run_bind = '<leader>run'
-let g:pymode_rope = 0
-let g:pymode_lint_ignore = 'C0301,E501,W0511, C0111, W0621'
-
 "Collect static files
 nmap <silent><leader>cs :!python manage.py collectstatic<cr>
 
@@ -76,9 +69,6 @@ nmap <silent><leader>snp :set nopaste<cr>
 
 "tag
 nmap <silent><leader>tg :tselect <C-R><C-W><cr>
-
-"emmet stuff
-let g:user_emmet_leader_key='<C-N>'
 
 " Quick open todo
 nmap <silent><leader>tt :sp note:todo<cr>
@@ -114,3 +104,9 @@ if has("autocmd")
   "following line unfolds all folds when opening file
   au BufRead * normal zR
 endif
+
+"Ctrlp
+"Clear cache before loading ctrlp
+nnoremap <silent> <leader>p :ClearCtrlPCache<cr>\|:CtrlP<cr>
+"Ignore some directories. Don't forget to escape |
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|coverage_html_report'
