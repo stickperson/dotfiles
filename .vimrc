@@ -14,6 +14,7 @@ Plugin 'davidhalter/jedi-vim'  " Must come after python-mode
 Plugin 'scrooloose/syntastic' " use with something like flake8
 Plugin 'mxw/vim-jsx'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe' " remember to run install.py. see README.
 Plugin 'kien/ctrlp.vim'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
@@ -58,7 +59,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ignore_files = ['**.*.js']
 
-let mapleader = ","
+let mapleader = "\<Space>"
 
 "Collect static files
 nmap <silent><leader>cs :!python manage.py collectstatic<cr>
@@ -71,7 +72,7 @@ nmap <silent><leader>snp :set nopaste<cr>
 nmap <silent><leader>tg :tselect <C-R><C-W><cr>
 
 " Quick open todo
-nmap <silent><leader>tt :sp note:todo<cr>
+nmap <silent><leader>tt :e ~/note:todo<cr>
 
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 nnoremap <CR> :noh<CR><CR>
@@ -93,6 +94,10 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+let g:airline_theme='powerlineish'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_section_z=''
 
 autocmd BufWritePre *.js :%s/\s\+$//e
 
@@ -107,6 +112,16 @@ endif
 
 "Ctrlp
 "Clear cache before loading ctrlp
-nnoremap <silent> <leader>p :ClearCtrlPCache<cr>\|:CtrlP<cr>
+nnoremap <silent> <leader>p :ClearCtrlPCache<cr>\|:CtrlPMRU<cr>
 "Ignore some directories. Don't forget to escape |
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|coverage_html_report'
+let g:ctrlp_working_path_mode = 'ar'
+
+" Set paste in visual mode such that pasted over word goes to black hole
+" register
+xnoremap p "_dP
+
+let g:ycm_filetype_specific_completion_to_disable = {
+    \ 'gitcommit': 1,
+    \ 'javascript': 1
+    \}
