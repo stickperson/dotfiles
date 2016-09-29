@@ -17,7 +17,7 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe' " remember to run install.py. see README.
 Plugin 'kien/ctrlp.vim'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'dracula/vim'
 call vundle#end() 
 filetype plugin indent on
 "Vundle end
@@ -27,6 +27,7 @@ syntax on
 "set background=light
 "colorscheme base16-atelierdune
 colorscheme dracula
+set nu
 set clipboard=unnamed
 set backspace=indent,eol,start
 set hlsearch
