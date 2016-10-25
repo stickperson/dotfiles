@@ -127,6 +127,11 @@ gdf()
     git diff "$@" | less; 
 }
 
+folder_sizes()
+{
+    du -hs "$@" | gsort -h
+}
+
 precmd() {
 eval 'if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history | tail -n 1)" >>! ~/Logs/zsh-history-$(date "+%Y-%m-%d").log; fi'
 }
