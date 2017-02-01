@@ -18,7 +18,11 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe' " remember to run install.py. see README.
 Plugin 'kien/ctrlp.vim'
 Plugin 'dracula/vim'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'vimwiki/vimwiki'
+Plugin 'ervandew/supertab'
 call vundle#end() 
+filetype plugin on
 filetype plugin indent on
 "Vundle end
 set t_Co=256
@@ -47,18 +51,19 @@ vnoremap <space> zf
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype css setlocal ts=2 sts=2 sw=2
-autocmd Filetype sh setlocal noexpandtab ts=2 sw=2
+autocmd Filetype sh setlocal  ts=2 sts=2 sw=2
+autocmd Filetype yaml setlocal ts=4 sts=4 sw=4
+au BufRead,BufNewFile *.md setlocal textwidth=80
 
 "syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_ignore_files = ['**.*.js']
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_ignore_files = ['**.*.js']
 
 let mapleader = "\<Space>"
 
@@ -71,6 +76,9 @@ nmap <silent><leader>snp :set nopaste<cr>
 
 "tag
 nmap <silent><leader>tg :tselect <C-R><C-W><cr>
+
+"supertab. scroll from top to bottom
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Quick open todo
 nmap <silent><leader>tt :e ~/note:todo<cr>
@@ -126,3 +134,6 @@ let g:ycm_filetype_specific_completion_to_disable = {
     \ 'gitcommit': 1,
     \ 'javascript': 1
     \}
+
+"fix crontab
+au FileType crontab setlocal bkc=yes

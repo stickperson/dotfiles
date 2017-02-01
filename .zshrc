@@ -115,12 +115,23 @@ alias tmxl='tmux list-sessions'
 alias tmxk='tmux kill-session -t'
 alias vi='vim'
 
+# Docker aliases
+alias de='docker exec'
+alias di='docker images'
+alias dr='docker run'
+alias drmi='docker rmi'
+
 # Google calendar
 alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
 alias gcw='gcalcli calw 1'
 
 # Search history
 bindkey "^R" history-incremental-search-backward
+
+todo()
+{
+    cat ~/note:todo;
+}
 
 gdf()
 {
@@ -132,6 +143,11 @@ folder_sizes()
     du -hs "$@" | gsort -h
 }
 
+wrc()
+{
+    vim ~/.zsh/work
+}
+
 precmd() {
 eval 'if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history | tail -n 1)" >>! ~/Logs/zsh-history-$(date "+%Y-%m-%d").log; fi'
 }
@@ -141,3 +157,4 @@ PERL5LIB="/Users/joe/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/Users/joe/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/Users/joe/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/joe/perl5"; export PERL_MM_OPT;
+export PATH="/usr/local/sbin:$PATH"
