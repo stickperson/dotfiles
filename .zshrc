@@ -102,6 +102,7 @@ alias cll='clear & ls -lah'
 alias curlJson='curl -H "Content-Type: application/json" -X POST'
 alias dev_latest='git checkout dev && git pull origin dev && remove_branches'
 alias ez='vim ~/.zshrc'
+alias global_entry='phantomjs /Users/joe/projects/ge-cancellation-checker/ge-cancellation-checker.phantom.js --help'
 alias htop='sudo htop'
 alias l='less'
 alias ll='ls -lah'
@@ -138,9 +139,11 @@ gdf()
     git diff "$@" | less; 
 }
 
+# Need to brew install coreutils on mac for gsort
+# Usage: folder_sizes ./*
 folder_sizes()
 {
-    du -hs "$@" | gsort -h
+    du -hs "$@" | gsort -hr
 }
 
 wrc()
