@@ -52,18 +52,18 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype css setlocal ts=2 sts=2 sw=2
 autocmd Filetype sh setlocal  ts=2 sts=2 sw=2
-autocmd Filetype yaml setlocal ts=4 sts=4 sw=4
+autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 au BufRead,BufNewFile *.md setlocal textwidth=80
 
 "syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_ignore_files = ['**.*.js']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_ignore_files = ['**.*.js']
 
 let mapleader = "\<Space>"
 

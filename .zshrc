@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/joe/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 set term=xterm-256color
 
 if [ -f ~/.zsh/work ]; then
@@ -101,6 +101,8 @@ alias c='clear'
 alias cll='clear & ls -lah'
 alias curlJson='curl -H "Content-Type: application/json" -X POST'
 alias dev_latest='git checkout dev && git pull origin dev && remove_branches'
+alias dl='cd ~/Downloads'
+alias master_latest='git checkout master && git pull origin master && remove_branches'
 alias ez='vim ~/.zshrc'
 alias global_entry='phantomjs /Users/joe/projects/ge-cancellation-checker/ge-cancellation-checker.phantom.js --help'
 alias htop='sudo htop'
@@ -119,6 +121,8 @@ alias vi='vim'
 # Docker aliases
 alias de='docker exec'
 alias di='docker images'
+alias dps='docker ps'
+alias dpsa='docker ps -a'
 alias dr='docker run'
 alias drmi='docker rmi'
 
@@ -161,3 +165,5 @@ PERL_LOCAL_LIB_ROOT="/Users/joe/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_RO
 PERL_MB_OPT="--install_base \"/Users/joe/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/joe/perl5"; export PERL_MM_OPT;
 export PATH="/usr/local/sbin:$PATH"
+HOSTNAME=$(hostname)
+PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX %{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
