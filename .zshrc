@@ -125,6 +125,8 @@ alias dps='docker ps'
 alias dpsa='docker ps -a'
 alias dr='docker run'
 alias drmi='docker rmi'
+# remove stopped containers
+alias drms='docker rm $(docker ps -aq)'
 
 # Google calendar
 alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '

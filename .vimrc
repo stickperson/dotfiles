@@ -21,6 +21,7 @@ Plugin 'dracula/vim'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'vimwiki/vimwiki'
 Plugin 'ervandew/supertab'
+Plugin 'sudar/vim-arduino-syntax'
 call vundle#end() 
 filetype plugin on
 filetype plugin indent on
@@ -53,6 +54,7 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype css setlocal ts=2 sts=2 sw=2
 autocmd Filetype sh setlocal  ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
+autocmd Filetype arduino setlocal ts=2 sts=2 sw=2
 au BufRead,BufNewFile *.md setlocal textwidth=80
 
 "syntastic
