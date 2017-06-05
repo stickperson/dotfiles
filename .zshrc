@@ -2,14 +2,21 @@
 export ZSH=$HOME/.oh-my-zsh
 set term=xterm-256color
 
+# For docker-compose completion
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
 if [ -f ~/.zsh/work ]; then
     source ~/.zsh/work
+fi
+
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 stty -ixon -ixoff
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export ANDROID_NDK=/usr/local/Cellar/android-ndk/r10e
 
@@ -64,6 +71,7 @@ plugins=(git)
 
 # I guess zsh setup looked at my current PATH to generate the following line.
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH=$PATH:/usr/local/go/bin
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,8 +111,6 @@ alias curlJson='curl -H "Content-Type: application/json" -X POST'
 alias dev_latest='git checkout dev && git pull origin dev && remove_branches'
 alias dl='cd ~/Downloads'
 alias master_latest='git checkout master && git pull origin master && remove_branches'
-alias ez='vim ~/.zshrc'
-alias global_entry='phantomjs /Users/joe/projects/ge-cancellation-checker/ge-cancellation-checker.phantom.js --help'
 alias htop='sudo htop'
 alias l='less'
 alias ll='ls -lah'
@@ -117,6 +123,7 @@ alias tmxa='tmux attach-session -t'
 alias tmxl='tmux list-sessions'
 alias tmxk='tmux kill-session -t'
 alias vi='vim'
+alias zrc='vim ~/.zshrc'
 
 # Docker aliases
 alias de='docker exec'
@@ -168,4 +175,4 @@ PERL_MB_OPT="--install_base \"/Users/joe/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/joe/perl5"; export PERL_MM_OPT;
 export PATH="/usr/local/sbin:$PATH"
 HOSTNAME=$(hostname)
-PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX %{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX  $HOST%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
