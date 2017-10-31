@@ -2,6 +2,9 @@
 export ZSH=$HOME/.oh-my-zsh
 set term=xterm-256color
 
+# Go stuff
+export GOROOT=$HOME/go
+
 # For docker-compose completion
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
@@ -71,7 +74,7 @@ plugins=(git)
 
 # I guess zsh setup looked at my current PATH to generate the following line.
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOROOT/bin
 
 source $ZSH/oh-my-zsh.sh
 
@@ -176,3 +179,6 @@ PERL_MM_OPT="INSTALL_BASE=/Users/joe/perl5"; export PERL_MM_OPT;
 export PATH="/usr/local/sbin:$PATH"
 HOSTNAME=$(hostname)
 PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX  $HOST%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+
+### Added by the Bluemix CLI
+source /usr/local/Bluemix/bx/zsh_autocomplete

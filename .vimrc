@@ -22,6 +22,7 @@ Plugin 'chase/vim-ansible-yaml'
 Plugin 'vimwiki/vimwiki'
 Plugin 'ervandew/supertab'
 Plugin 'sudar/vim-arduino-syntax'
+Plugin 'scrooloose/nerdcommenter'
 call vundle#end() 
 filetype plugin on
 filetype plugin indent on
@@ -40,6 +41,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set textwidth=160
 set nosmartindent
 set mouse=a
 set statusline=%l
@@ -50,11 +52,14 @@ set tags=tags;
 nnoremap <space> za
 vnoremap <space> zf
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype css setlocal ts=2 sts=2 sw=2
 autocmd Filetype sh setlocal  ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype arduino setlocal ts=2 sts=2 sw=2
+autocmd Filetype text setlocal ts=2 sts=2 sw=2 tw=180
+autocmd Filetype vimwiki setlocal ts=2 sts=2 sw=2 tw=179
 au BufRead,BufNewFile *.md setlocal textwidth=80
 
 "syntastic
@@ -66,11 +71,15 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ignore_files = ['**.*.js']
+let g:syntastic_python_flake8_args="--max-line-length=120"
 
 let mapleader = "\<Space>"
 
 "Collect static files
 nmap <silent><leader>cs :!python manage.py collectstatic<cr>
+
+"Delete buffer
+nmap <silent><leader>d :bd<cr>
 
 "Paste shortcuts
 nmap <silent><leader>sp :set paste<cr>
