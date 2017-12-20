@@ -138,6 +138,12 @@ alias drmi='docker rmi'
 # remove stopped containers
 alias drms='docker rm $(docker ps -aq)'
 
+# K8s
+alias kd='kubectl get deployment'
+alias kdf='kubectl delete -f '
+alias kp='kubectl get pod'
+alias ks='kubectl get svc'
+
 # Google calendar
 alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
 alias gcw='gcalcli calw 1'
