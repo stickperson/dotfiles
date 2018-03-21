@@ -1,4 +1,6 @@
 # Path to your oh-my-zsh installation.
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export ZSH=$HOME/.oh-my-zsh
 set term=xterm-256color
 
@@ -113,6 +115,8 @@ alias cll='clear & ls -lah'
 alias curlJson='curl -H "Content-Type: application/json" -X POST'
 alias dev_latest='git checkout dev && git pull origin dev && remove_branches'
 alias dl='cd ~/Downloads'
+# gd alias is for `git diff`
+alias ggd='cd ~/Google\ Drive'
 alias master_latest='git checkout master && git pull origin master && remove_branches'
 alias htop='sudo htop'
 alias l='less'
@@ -139,10 +143,12 @@ alias drmi='docker rmi'
 alias drms='docker rm $(docker ps -aq)'
 
 # K8s
-alias kd='kubectl get deployment'
+alias kaf='kubectl apply -f '
+alias kd='kubectl get deployment --all-namespaces'
 alias kdf='kubectl delete -f '
-alias kp='kubectl get pod'
-alias ks='kubectl get svc'
+alias kp='kubectl get pods --all-namespaces'
+alias ks='kubectl get svc '
+alias ksa='kubectl get svc --all-namespaces'
 
 # Google calendar
 alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
@@ -154,6 +160,18 @@ bindkey "^R" history-incremental-search-backward
 todo()
 {
     cat ~/note:todo;
+}
+
+curl_timing(){
+    curl -w "\n
+    time_namelookup:  %{time_namelookup}
+       time_connect:  %{time_connect}
+    time_appconnect:  %{time_appconnect}
+   time_pretransfer:  %{time_pretransfer}
+      time_redirect:  %{time_redirect}
+ time_starttransfer:  %{time_starttransfer}
+                    ----------
+         time_total:  %{time_total}\n" $@
 }
 
 gdf()
@@ -185,6 +203,3 @@ PERL_MM_OPT="INSTALL_BASE=/Users/joe/perl5"; export PERL_MM_OPT;
 export PATH="/usr/local/sbin:$PATH"
 HOSTNAME=$(hostname)
 PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX  $HOST%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
-
-### Added by the Bluemix CLI
-source /usr/local/Bluemix/bx/zsh_autocomplete

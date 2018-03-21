@@ -72,6 +72,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ignore_files = ['**.*.js']
 let g:syntastic_python_flake8_args="--max-line-length=120"
+let g:syntastic_python_checkers = ['flake8']
 
 let mapleader = "\<Space>"
 
@@ -148,3 +149,11 @@ let g:ycm_filetype_specific_completion_to_disable = {
 
 "fix crontab
 au FileType crontab setlocal bkc=yes
+
+"Don't run syntasitc automatically while saving python files
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": ["python"] }
+nnoremap <silent> <leader>sc :SyntasticCheck<cr>
+nnoremap <silent> <leader>sr :SyntasticReset<cr>
