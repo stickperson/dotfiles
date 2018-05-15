@@ -1,3 +1,4 @@
+set -o vi
 # Path to your oh-my-zsh installation.
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -8,7 +9,7 @@ set term=xterm-256color
 export GOROOT=$HOME/go
 
 # For docker-compose completion
-fpath=(~/.zsh/completion $fpath)
+fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -Uz compinit && compinit -i
 
 if [ -f ~/.zsh/work ]; then
@@ -77,6 +78,7 @@ plugins=(git)
 # I guess zsh setup looked at my current PATH to generate the following line.
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH=$PATH:$GOROOT/bin
+export PATH="$PATH:/anaconda3/bin"
 
 source $ZSH/oh-my-zsh.sh
 
