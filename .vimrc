@@ -6,7 +6,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'vim-sensible'
+"Plugin 'vim-sensible'
 Plugin 'chriskempson/base16-vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
@@ -17,7 +17,7 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe' " remember to run install.py. see README.
 Plugin 'kien/ctrlp.vim'
-Plugin 'dracula/vim'
+Plugin 'dracula/dracula-theme'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'vimwiki/vimwiki'
 Plugin 'ervandew/supertab'
@@ -30,8 +30,6 @@ filetype plugin indent on
 set t_Co=256
 set term=screen-256color
 syntax on
-"set background=light
-"colorscheme base16-atelierdune
 colorscheme dracula
 set nu
 set clipboard=unnamed
