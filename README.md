@@ -10,6 +10,7 @@ A not-so-ordered list of things I had to do while setting up my new laptop. Most
 - Docker
 - Virtual box
 - Vagrant
+- Vundle + vim plugins
 
 ## Brew install:
 - zsh
@@ -20,4 +21,6 @@ A not-so-ordered list of things I had to do while setting up my new laptop. Most
 
 
 ## Random notes
-If vim registers don't work, `chown $USER ~/.viminfo` and `chmod u+w .viminfo`
+- If vim registers don't work, `chown $USER ~/.viminfo` and `chmod u+w .viminfo`
+- You may have to update the user in the iterm settings file
+- The dracula vim theme doesn't always install correctly. If it's in .vim/bundle, move the colors folder to `~/.vim/colors`. You may be able to just grab that folder from the git repo.
