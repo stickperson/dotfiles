@@ -16,15 +16,16 @@ if [ -f ~/.zsh/work ]; then
     source ~/.zsh/work
 fi
 
+stty -ixon -ixoff
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export PROJECT_HOME=$HOME/Devel
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_NDK=/usr/local/Cellar/android-ndk/r10e
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 fi
 
-stty -ixon -ixoff
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-export ANDROID_HOME=/usr/local/opt/android-sdk
-export ANDROID_NDK=/usr/local/Cellar/android-ndk/r10e
 
 
 # Set name of the theme to load.
@@ -117,14 +118,18 @@ alias cll='clear & ls -lah'
 alias curlJson='curl -H "Content-Type: application/json" -X POST'
 alias dev_latest='git checkout dev && git pull origin dev && remove_branches'
 alias dl='cd ~/Downloads'
+alias doc='cd ~/Documents'
 # gd alias is for `git diff`
 alias ggd='cd ~/Google\ Drive'
 alias master_latest='git checkout master && git pull origin master && remove_branches'
 alias htop='sudo htop'
 alias l='less'
 alias ll='ls -lah'
+alias opem='open'
 alias pro='cd ~/projects/'
 alias remove_branches='git branch --merged | grep -v "\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d'
+alias sa='source activate'
+alias sd='source deactivate'
 alias src='source ~/.zshrc'
 alias td='vim ~/note:todo'
 alias tmx='tmux new -s'
@@ -197,11 +202,6 @@ precmd() {
 eval 'if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history | tail -n 1)" >>! ~/Logs/zsh-history-$(date "+%Y-%m-%d").log; fi'
 }
 
-PATH="/Users/joe/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/joe/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/joe/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/joe/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/joe/perl5"; export PERL_MM_OPT;
 export PATH="/usr/local/sbin:$PATH"
 HOSTNAME=$(hostname)
 PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX  $HOST%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
