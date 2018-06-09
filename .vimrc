@@ -23,6 +23,7 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'ervandew/supertab'
 Plugin 'sudar/vim-arduino-syntax'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'tmhedberg/SimpylFold'
 call vundle#end() 
 filetype plugin on
 filetype plugin indent on
@@ -120,6 +121,7 @@ let g:airline_section_z=''
 
 autocmd BufWritePre *.js :%s/\s\+$//e
 
+"Jump to last position when reopening a file
 if has("autocmd")
   autocmd BufReadPost *
   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
@@ -140,6 +142,12 @@ let g:ctrlp_working_path_mode = 'ar'
 " register
 xnoremap p "_dP
 
+"Autocomplete
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:jedi#completions_enabled = 0
+let g:ycm_semantic_triggers = {
+    \   'python': [ 're!\w{2}' ]
+    \ }
 let g:ycm_filetype_specific_completion_to_disable = {
     \ 'gitcommit': 1,
     \ 'javascript': 1

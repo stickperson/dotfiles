@@ -20,6 +20,10 @@ A not-so-ordered list of things I had to do while setting up my new laptop. Most
 - tmux
 
 
+## Vim
+### Autocompletion
+`jedi-vim` and `YouCompleteMe` will be installed with vundle. To finish setup of ycm, go into the plugin and run `python setup.py --clang-completer`.
+
 ## Random notes
 - If vim registers don't work, `chown $USER ~/.viminfo` and `chmod u+w .viminfo`
 - You may have to update the user in the iterm settings file
