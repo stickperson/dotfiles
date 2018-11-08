@@ -3,6 +3,7 @@ set -o vi
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export ZSH=$HOME/.oh-my-zsh
+export EDITOR=vim
 set term=xterm-256color
 
 # Go stuff
@@ -72,7 +73,7 @@ ZSH_THEME="cloud"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions thefuck)
 
 # User configuration
 
@@ -204,4 +205,8 @@ eval 'if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(
 
 export PATH="/usr/local/sbin:$PATH"
 HOSTNAME=$(hostname)
-PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX  $HOST%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX  %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+
+eval $(thefuck --alias)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
