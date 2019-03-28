@@ -17,6 +17,12 @@ if [ -f ~/.zsh/work ]; then
     source ~/.zsh/work
 fi
 
+if [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+fi
+
+
+
 stty -ixon -ixoff
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
@@ -138,6 +144,7 @@ alias tmxa='tmux attach-session -t'
 alias tmxl='tmux list-sessions'
 alias tmxk='tmux kill-session -t'
 alias vi='vim'
+alias wrc='vim ~/.zsh/work'
 alias zrc='vim ~/.zshrc'
 
 # Docker aliases
@@ -194,19 +201,22 @@ folder_sizes()
     du -hs "$@" | gsort -hr
 }
 
-wrc()
-{
-    vim ~/.zsh/work
-}
-
 precmd() {
 eval 'if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history | tail -n 1)" >>! ~/Logs/zsh-history-$(date "+%Y-%m-%d").log; fi'
 }
 
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/10/bin:$PATH"
+
 HOSTNAME=$(hostname)
 PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX  %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 
 eval $(thefuck --alias)
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Fuzzy recursive search. For some reason this only works if added at the bottom.
+if [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
