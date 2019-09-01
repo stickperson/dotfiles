@@ -19,7 +19,16 @@ if [ -f ~/.zsh/work ]; then
 fi
 
 # Set name of the theme to load.
-ZSH_THEME="cloud"
+if [ -f ~/.zsh/work ]; then
+    source ~/.zsh/work
+fi
+
+# Different themes on pi/laptop
+if [ -f /etc/os-release ]; then
+    ZSH_THEME="philthy"
+else
+    ZSH_THEME="cloud"
+fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
