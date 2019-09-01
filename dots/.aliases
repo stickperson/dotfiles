@@ -1,0 +1,54 @@
+# Aliases
+alias acl='ack'
+alias bim='vim'
+alias c='clear'
+alias cll='clear & ls -lah'
+alias curlJson='curl -H "Content-Type: application/json" -X POST'
+alias dev_latest='git checkout dev && git pull origin dev && remove_branches'
+alias dl='cd ~/Downloads'
+alias doc='cd ~/Documents'
+# gd alias is for `git diff`
+alias ggd='cd ~/Google\ Drive'
+alias master_latest='git checkout master && git pull origin master && remove_branches'
+alias htop='sudo htop'
+alias l='less'
+alias ll='ls -lah'
+alias opem='open'
+alias pro='cd ~/projects/'
+alias remove_branches='git branch --merged | grep -v "\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d'
+alias sa='source activate'
+alias sd='source deactivate'
+alias src='source ~/.zshrc'
+alias td='vim ~/note:todo'
+alias tmx='tmux new -s'
+alias tmxa='tmux attach-session -t'
+alias tmxl='tmux list-sessions'
+alias tmxk='tmux kill-session -t'
+alias vi='vim'
+alias wrc='vim ~/.zsh/work'
+alias zrc='vim ~/.zshrc'
+
+# Docker aliases
+alias de='docker exec'
+alias di='docker images'
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias dr='docker run'
+alias drmi='docker rmi'
+# remove stopped containers
+alias drms='docker rm $(docker ps -aq)'
+
+# K8s
+alias kaf='kubectl apply -f '
+alias kd='kubectl get deployment --all-namespaces'
+alias kdf='kubectl delete -f '
+alias kp='kubectl get pods --all-namespaces'
+alias ks='kubectl get svc '
+alias ksa='kubectl get svc --all-namespaces'
+
+# Google calendar
+alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
+alias gcw='gcalcli calw 1'
+
+# Search history
+
