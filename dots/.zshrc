@@ -88,7 +88,7 @@ export PATH="/Applications/Postgres.app/Contents/Versions/10/bin:$PATH"
 
 # Fuzzy recursive search. For some reason this only works if added at the bottom.
 if [ -f ~/.fzf.zsh ]; then
-    #source ~/.fzf.zsh
+    source ~/.fzf.zsh
 fi
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
