@@ -15,9 +15,9 @@ Plugin 'scrooloose/syntastic' " use with something like flake8
 Plugin 'mxw/vim-jsx'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Valloric/YouCompleteMe' " remember to run install.py. see README.
+"Plugin 'Valloric/YouCompleteMe' " remember to run install.py. see README.
 Plugin 'kien/ctrlp.vim'
-Plugin 'dracula/dracula-theme'
+Plugin 'dracula/vim'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'vimwiki/vimwiki'
 Plugin 'ervandew/supertab'
@@ -31,7 +31,7 @@ filetype plugin indent on
 set t_Co=256
 set term=screen-256color
 syntax on
-colorscheme dracula
+"colorscheme dracula
 set nu
 set clipboard=unnamed
 set backspace=indent,eol,start
@@ -101,7 +101,7 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 au FileType javascript call JavaScriptFold()
 
-" Sexier tab bar
+" Better tab bar
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#tab_nr_mode = 1
@@ -143,16 +143,7 @@ let g:ctrlp_working_path_mode = 'ar'
 xnoremap p "_dP
 
 "Autocomplete
-"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:jedi#completions_enabled = 0
-let g:ycm_semantic_triggers = {
-    \   'python': [ 're!\w{2}' ]
-    \ }
-let g:ycm_filetype_specific_completion_to_disable = {
-    \ 'gitcommit': 1,
-    \ 'javascript': 1
-    \}
-
 "fix crontab
 au FileType crontab setlocal bkc=yes
 
