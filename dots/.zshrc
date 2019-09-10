@@ -9,10 +9,6 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 stty -ixon -ixoff
 
-# For docker-compose completion
-fpath=(/usr/local/share/zsh-completions $fpath)
-autoload -Uz compinit && compinit -i
-
 # Work-specific stuff
 if [ -f ~/.zsh/work ]; then
     source ~/.zsh/work
@@ -92,4 +88,8 @@ if [ -f ~/.fzf.zsh ]; then
 fi
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+fi
+
+if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi

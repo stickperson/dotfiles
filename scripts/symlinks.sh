@@ -18,4 +18,3 @@ symlink .aliases
 symlink .tmux.conf
 symlink .vimrc
 symlink .zshrc
-symlink .zsh_plugins.txt

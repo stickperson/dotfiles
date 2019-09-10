@@ -18,6 +18,7 @@ alias pro='cd ~/projects/'
 alias remove_branches='git branch --merged | grep -v "\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d'
 alias sa='source activate'
 alias sd='source deactivate'
+alias sp='./manage.py shell_plus'
 alias src='source ~/.zshrc'
 alias td='vim ~/note:todo'
 alias tmx='tmux new -s'
@@ -49,6 +50,3 @@ alias ksa='kubectl get svc --all-namespaces'
 # Google calendar
 alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
 alias gcw='gcalcli calw 1'
-
-# Search history
-

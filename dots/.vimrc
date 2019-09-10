@@ -142,8 +142,6 @@ let g:ctrlp_working_path_mode = 'ar'
 " register
 xnoremap p "_dP
 
-"Autocomplete
-let g:jedi#completions_enabled = 0
 "fix crontab
 au FileType crontab setlocal bkc=yes
 
