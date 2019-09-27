@@ -1,3 +1,4 @@
+autoload -U colors && colors
 set -o vi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -7,17 +8,11 @@ set term=xterm-256color
 # Can't remember why this is here.
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 stty -ixon -ixoff
 
 # Work-specific stuff
-if [ -f ~/.zsh/work ]; then
-    source ~/.zsh/work
-fi
-
-# Set name of the theme to load.
-if [ -f ~/.zsh/work ]; then
-    source ~/.zsh/work
-fi
+source ~/.zsh/work 2>/dev/null
 
 # Different themes on pi/laptop
 if [ -f /etc/os-release ]; then
@@ -90,6 +85,26 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+# End vi cursor stuff
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

@@ -26,6 +26,7 @@ alias tmxa='tmux attach-session -t'
 alias tmxl='tmux list-sessions'
 alias tmxk='tmux kill-session -t'
 alias vi='vim'
+alias weather='curl -4 http://wttr.in'
 alias wrc='vim ~/.zsh/work'
 alias zrc='vim ~/.zshrc'
 
