@@ -67,7 +67,7 @@ gdf()
 # Usage: folder_sizes ./*
 folder_sizes()
 {
-    du -hs "$@" | gsort -hr
+    du -d 1 -h | gsort -hr
 }
 
 precmd() {
@@ -108,3 +108,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # End vi cursor stuff
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+eval $(thefuck --alias)
