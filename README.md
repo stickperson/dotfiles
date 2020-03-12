@@ -20,6 +20,9 @@ A not-so-ordered list of things I had to do while setting up my new laptop. Most
 - tmux
 
 
+## iTerm2
+Preset- Jetbrains Darcula
+
 ## Vim
 ### Autocompletion
 `jedi-vim` and `YouCompleteMe` will be installed with vundle. To finish setup of ycm, go into the plugin and run `python setup.py --clang-completer`.

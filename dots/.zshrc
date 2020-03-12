@@ -75,14 +75,11 @@ eval 'if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(
 }
 
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/10/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
 # Fuzzy recursive search. For some reason this only works if added at the bottom.
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
-fi
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
 fi
 
 # Change cursor shape for different vi modes.
@@ -112,3 +109,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/d
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 eval $(thefuck --alias)
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
