@@ -41,6 +41,8 @@ export KEYTIMEOUT=1
 
 bindkey "^R" history-incremental-search-backward
 
+RPROMPT='%{$fg[cyan]%}%n%{$reset_color%}'
+
 todo()
 {
     cat ~/note:todo;
