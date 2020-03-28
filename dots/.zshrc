@@ -14,12 +14,7 @@ stty -ixon -ixoff
 # Work-specific stuff
 source ~/.zsh/work 2>/dev/null
 
-# Different themes on pi/laptop
-if [ -f /etc/os-release ]; then
-    ZSH_THEME="philthy"
-else
-    ZSH_THEME="cloud"
-fi
+ZSH_THEME="cloud"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -110,7 +105,10 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/d
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-eval $(thefuck --alias)
+
+if command -v thefuck 1>/dev/null 2>&1; then
+    eval $(thefuck --alias)
+fi
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
