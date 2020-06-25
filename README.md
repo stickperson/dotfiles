@@ -18,6 +18,8 @@ A not-so-ordered list of things I had to do while setting up my new laptop. Most
 - reattach-to-user-namespace
 - vim (override system vim)
 - tmux
+- brew tap homebrew/cask-fonts && brew cask install font-hack-nerd-font
+- font-source-code-pro
 
 
 ## iTerm2
