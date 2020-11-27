@@ -6,16 +6,15 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-"Plugin 'vim-sensible'
+Plugin 'tpope/vim-sensible'
 Plugin 'chriskempson/base16-vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'davidhalter/jedi-vim'  " Must come after python-mode
 Plugin 'scrooloose/syntastic' " use with something like flake8
 Plugin 'mxw/vim-jsx'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'Valloric/YouCompleteMe' " remember to run install.py. see README.
+Plugin 'Valloric/YouCompleteMe' " remember to run install.py. see README.
 Plugin 'kien/ctrlp.vim'
 Plugin 'dracula/vim'
 Plugin 'chase/vim-ansible-yaml'
@@ -24,6 +23,7 @@ Plugin 'ervandew/supertab'
 Plugin 'sudar/vim-arduino-syntax'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tmhedberg/SimpylFold'
+Plugin 'arcticicestudio/nord-vim'
 call vundle#end() 
 filetype plugin on
 filetype plugin indent on
@@ -31,7 +31,13 @@ filetype plugin indent on
 set t_Co=256
 set term=screen-256color
 syntax on
+if (has("termguicolors"))
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 "colorscheme dracula
+colorscheme nord
 set nu
 set clipboard=unnamed
 set backspace=indent,eol,start
@@ -75,18 +81,12 @@ let g:syntastic_python_checkers = ['flake8']
 
 let mapleader = "\<Space>"
 
-"Collect static files
-nmap <silent><leader>cs :!python manage.py collectstatic<cr>
-
 "Delete buffer
 nmap <silent><leader>d :bd<cr>
 
 "Paste shortcuts
 nmap <silent><leader>sp :set paste<cr>
 nmap <silent><leader>snp :set nopaste<cr>
-
-"tag
-nmap <silent><leader>tg :tselect <C-R><C-W><cr>
 
 "supertab. scroll from top to bottom
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -145,10 +145,9 @@ xnoremap p "_dP
 "fix crontab
 au FileType crontab setlocal bkc=yes
 
-"Don't run syntasitc automatically while saving python files
-let g:syntastic_mode_map = {
-    \ "mode": "active",
-    \ "active_filetypes": [],
-    \ "passive_filetypes": ["python"] }
 nnoremap <silent> <leader>sc :SyntasticCheck<cr>
 nnoremap <silent> <leader>sr :SyntasticReset<cr>
+
+"YCM
+"go to definition
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>

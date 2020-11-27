@@ -10,6 +10,7 @@ alias doc='cd ~/Documents'
 # gd alias is for `git diff`
 alias ggd='cd ~/Google\ Drive'
 alias master_latest='git checkout master && git pull origin master && remove_branches'
+alias main_latest='git checkout main && git pull origin main && remove_branches'
 alias htop='sudo htop'
 alias l='less'
 alias ll='ls -lah'
