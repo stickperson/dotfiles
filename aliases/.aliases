@@ -4,9 +4,11 @@ alias bim='vim'
 alias c='clear'
 alias cll='clear & ls -lah'
 alias curlJson='curl -H "Content-Type: application/json" -X POST'
+alias cve='python -m venv venv'
 alias dev_latest='git checkout dev && git pull origin dev && remove_branches'
 alias dl='cd ~/Downloads'
 alias doc='cd ~/Documents'
+alias dpaste="curl -F 'format=url' -F 'content=<-' https://dpaste.org/api/"
 # gd alias is for `git diff`
 alias ggd='cd ~/Google\ Drive'
 alias master_latest='git checkout master && git pull origin master && remove_branches'
