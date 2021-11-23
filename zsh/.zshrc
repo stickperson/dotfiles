@@ -111,7 +111,7 @@ if command -v thefuck 1>/dev/null 2>&1; then
 fi
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
 fi
 if command -v pyenv-virtualenv 1>/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
