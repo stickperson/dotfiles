@@ -10,6 +10,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'chriskempson/base16-vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
+Plugin 'davidhalter/jedi-vim'  " Must come after python-mode
 Plugin 'scrooloose/syntastic' " use with something like flake8
 Plugin 'mxw/vim-jsx'
 Plugin 'bling/vim-airline'
@@ -23,7 +24,6 @@ Plugin 'ervandew/supertab'
 Plugin 'sudar/vim-arduino-syntax'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'arcticicestudio/nord-vim'
 call vundle#end() 
 filetype plugin on
 filetype plugin indent on
@@ -31,17 +31,12 @@ filetype plugin indent on
 set t_Co=256
 set term=screen-256color
 syntax on
-if (has("termguicolors"))
-  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
 "colorscheme dracula
-colorscheme nord
 set nu
 set clipboard=unnamed
 set backspace=indent,eol,start
 set hlsearch
+highlight Search ctermbg=Blue
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -54,6 +49,8 @@ set statusline+=/
 set statusline+=%L
 set wildignore+=*/node_modules/*
 set tags=tags;
+"map space to fold
+set foldmethod=indent
 nnoremap <space> za
 vnoremap <space> zf
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
@@ -79,7 +76,15 @@ let g:syntastic_ignore_files = ['**.*.js']
 let g:syntastic_python_flake8_args="--max-line-length=120"
 let g:syntastic_python_checkers = ['flake8']
 
+"start jedi-vim
+"disable auto completion because YCM will handle that
+let g:jedi#completions_enabled = 0
+"end jedi-vim
+
 let mapleader = "\<Space>"
+
+"Collect static files
+nmap <silent><leader>cs :!python manage.py collectstatic<cr>
 
 "Delete buffer
 nmap <silent><leader>d :bd<cr>
@@ -87,6 +92,9 @@ nmap <silent><leader>d :bd<cr>
 "Paste shortcuts
 nmap <silent><leader>sp :set paste<cr>
 nmap <silent><leader>snp :set nopaste<cr>
+
+"tag
+nmap <silent><leader>tg :tselect <C-R><C-W><cr>
 
 "supertab. scroll from top to bottom
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -145,9 +153,25 @@ xnoremap p "_dP
 "fix crontab
 au FileType crontab setlocal bkc=yes
 
+"Don't run syntasitc automatically while saving python files
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": ["python"] }
 nnoremap <silent> <leader>sc :SyntasticCheck<cr>
 nnoremap <silent> <leader>sr :SyntasticReset<cr>
 
-"YCM
-"go to definition
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"start YCM
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+let g:ycm_complete_in_comments = 1
+"venv support
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+"end venv support
+"end YCM

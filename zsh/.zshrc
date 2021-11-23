@@ -21,10 +21,10 @@ ZSH_THEME="cloud"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions docker docker-compose)
 
 # I guess zsh setup looked at my current PATH to generate the following line.
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin"
 source $ZSH/oh-my-zsh.sh
 
 source "$HOME/.aliases"
@@ -113,4 +113,9 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+if command -v pyenv-virtualenv 1>/dev/null 2>&1; then
+  eval "$(pyenv virtualenv-init -)"
+fi
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+unset PYENV_VERSION
