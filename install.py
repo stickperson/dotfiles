@@ -25,4 +25,4 @@ if __name__ == '__main__':
         for script in INSTALL_CONFIGS[system]:
             path = f'scripts/{script}'
             run_command('sh', path)
-    run_command('scripts/init.sh')
+    run_command('./init.sh')
