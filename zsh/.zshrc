@@ -24,7 +24,7 @@ ZSH_THEME="cloud"
 plugins=(git zsh-autosuggestions docker docker-compose)
 
 # I guess zsh setup looked at my current PATH to generate the following line.
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$PATH"
 source $ZSH/oh-my-zsh.sh
 
 source "$HOME/.aliases"
