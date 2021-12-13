@@ -23,8 +23,10 @@ ZSH_THEME="cloud"
 # zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
 plugins=(git zsh-autosuggestions docker docker-compose)
 
-# I guess zsh setup looked at my current PATH to generate the following line.
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$PATH"
+typeset -aU path
+path=(/Applications/Postgres.app/Contents/Versions/latest/bin $path /usr/local/bin /usr/bin /bin /usr/sbin /sbin /usr/local/go/bin /usr/local/sbin /opt/homebrew/opt/openssl/bin)
+# export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/sbin:/opt/homebrew/opt/openssl/bin"
+
 source $ZSH/oh-my-zsh.sh
 
 source "$HOME/.aliases"
@@ -71,9 +73,6 @@ precmd() {
 eval 'if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history | tail -n 1)" >>! ~/Logs/zsh-history-$(date "+%Y-%m-%d").log; fi'
 }
 
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
-
 # Fuzzy recursive search. For some reason this only works if added at the bottom.
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
@@ -103,19 +102,13 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 
 if command -v thefuck 1>/dev/null 2>&1; then
     eval $(thefuck --alias)
 fi
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-fi
-if command -v pyenv-virtualenv 1>/dev/null 2>&1; then
-  eval "$(pyenv virtualenv-init -)"
-fi
 fpath+=${ZDOTDIR:-~}/.zsh_functions
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-unset PYENV_VERSION
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
