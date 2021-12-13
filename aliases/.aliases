@@ -56,3 +56,12 @@ alias ksa='kubectl get svc --all-namespaces'
 # Google calendar
 alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
 alias gcw='gcalcli calw 1'
+
+
+gdff() {
+    if (( $# == 0 ))
+        then git difftool | less;
+    else
+        git difftool $@ | less;
+    fi
+}
