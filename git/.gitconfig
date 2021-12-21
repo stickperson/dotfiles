@@ -1,0 +1,22 @@
+# This is Git's per-user configuration file.
+[user]
+    name = Joe Meissler
+    email = joe.meissler@gmail.com
+[core]
+	excludesfile = /Users/joe.meissler/.config/git/ignore
+[push]
+    default = current
+[rerere]
+    autoupdate = false
+    enabled = true
+[diff]
+ 	tool = icdiff
+	colorMoved = zebra
+[difftool]
+	prompt = false
+[difftool "icdiff"]
+	cmd = /opt/homebrew/bin/icdiff --line-numbers $LOCAL $REMOTE
+[pull]
+	rebase = true
+[fetch]
+	prune = true

@@ -24,8 +24,10 @@ function _link() {
   fi
 }
 
+# TODO: iterate over certain directories instead of adding a line per-file
 # Link
 _link ${CONFIG_ROOT}/aliases/.aliases ${HOME}/.aliases
+_link ${CONFIG_ROOT}/git/.gitconfig ${HOME}/.gitconfig
 _link ${CONFIG_ROOT}/postgres/.psqlrc ${HOME}/.psqlrc
 _link ${CONFIG_ROOT}/tmux/.tmux.conf ${HOME}/.tmux.conf
 _link ${CONFIG_ROOT}/vim/.vimrc ${HOME}/.vimrc
