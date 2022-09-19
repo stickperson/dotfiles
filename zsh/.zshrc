@@ -21,10 +21,10 @@ ZSH_THEME="cloud"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
-plugins=(git zsh-autosuggestions docker docker-compose)
+plugins=(git zsh-autosuggestions docker)
 
 typeset -aU path
-path=(/Applications/Postgres.app/Contents/Versions/latest/bin $path /usr/local/bin /usr/bin /bin /usr/sbin /sbin /usr/local/go/bin /usr/local/sbin /opt/homebrew/opt/openssl/bin)
+path=(/Applications/Postgres.app/Contents/Versions/latest/bin $path /usr/local/bin /usr/bin /bin /usr/sbin /sbin /usr/local/go/bin /usr/local/sbin $HOME/bin /opt/homebrew/opt/openssl/bin)
 # export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/sbin:/opt/homebrew/opt/openssl/bin"
 
 source $ZSH/oh-my-zsh.sh
