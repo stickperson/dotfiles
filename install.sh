@@ -8,6 +8,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # shellcheck disable=SC2046
   brew install $(cat brew.txt)
 
+  # TODO
+  # brew tap homebrew/cask-fonts && brew cask install font-hack-nerd-font
+  # font-source-code-pro
+
   # Bluetooth audio settings
   defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Max (editable)" 80
   defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" 80

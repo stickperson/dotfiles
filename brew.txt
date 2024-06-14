@@ -1,5 +1,6 @@
 nvim
 reattach-to-user-namespace
+stow
 tmux
 zsh
 zsh-completions
