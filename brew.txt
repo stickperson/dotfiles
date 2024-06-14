@@ -1,0 +1,5 @@
+nvim
+reattach-to-user-namespace
+tmux
+zsh
+zsh-completions
