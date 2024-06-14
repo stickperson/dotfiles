@@ -1,0 +1,86 @@
+# Aliases
+alias acl='ack'
+alias bim='vim'
+alias c='clear'
+alias cll='clear & ls -lah'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias curlJson='curl -H "Content-Type: application/json" -X POST'
+alias cve='python -m venv venv'
+alias dev_latest='git checkout dev && git pull origin dev && remove_branches'
+alias dl='cd ~/Downloads'
+alias doc='cd ~/Documents'
+alias dpaste="curl -F 'format=url' -F 'content=<-' https://dpaste.org/api/"
+# gd alias is for `git diff`
+alias ggd='cd ~/Google\ Drive'
+alias master_latest='git checkout master && git pull origin master && remove_branches'
+alias main_latest='git checkout main && git pull origin main && remove_branches'
+alias htop='sudo htop'
+alias l='less'
+alias lg='lazygit'
+alias ll='ls -lah'
+alias opem='open'
+alias pg='ping google.com'
+alias pro='cd ~/projects/'
+alias remove_branches='git branch --merged | grep -v "\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d'
+alias sa='source venv/bin/activate'
+alias sd='source deactivate'
+alias sp='./manage.py shell_plus'
+alias src='source ~/.zshrc'
+alias ta='terraform apply'
+alias td='vim ~/note:todo'
+alias tf='terraform'
+alias ti='terraform init'
+alias tmx='tmux new-session -A -s'
+alias tmxl='tmux list-sessions'
+alias tmxk='tmux kill-session -t'
+alias tp='terraform plan'
+alias vi='vim'
+alias vim='nvim'
+alias weather='curl -4 http://wttr.in'
+alias wp='which python'
+alias wrc='vim ~/.zsh/work'
+alias zrc='vim ~/.zshrc'
+
+# Docker aliases
+alias de='docker exec'
+alias di='docker images'
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias dr='docker run'
+alias drmi='docker rmi'
+# remove stopped containers
+alias drms='docker rm $(docker ps -aq)'
+
+# K8s
+alias kaf='kubectl apply -f '
+alias kd='kubectl get deployment --all-namespaces'
+alias kdf='kubectl delete -f '
+alias kp='kubectl get pods --all-namespaces'
+alias ks='kubectl get svc '
+alias ksa='kubectl get svc --all-namespaces'
+
+# Google calendar
+alias gca='gcalcli add --calendar "joe.meissler@gmail.com" '
+alias gcw='gcalcli calw 1'
+
+
+gdff() {
+    if (( $# == 0 ))
+        then git difftool | less;
+    else
+        git difftool $@ | less;
+    fi
+}
+
+
+nvminit() {
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+}
+
+json_to_env() {
+	for s in $(echo $1 | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
+		export $s
+	done
+}
