@@ -1,0 +1,64 @@
+[alias]
+  noop = commit --amend --no-edit
+  noop-push = !git noop && git push -f
+
+[core]
+  editor = nvim
+  pager = delta
+
+[credential]
+  helper = osxkeychain
+
+[delta]
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  line-numbers = true
+  navigate = true    # use n and N to move between diff sections
+  side-by-side = true
+
+[diff]
+  colorMoved = default
+  # tool = delta
+  tool = icdiff
+
+[difftool]
+  prompt = false
+
+[difftool "delta"]
+  cmd = /opt/homebrew/bin/delta --line-numbers $LOCAL $REMOTE
+
+[difftool "icdiff"]
+  cmd = /opt/homebrew/bin/icdiff --line-numbers $LOCAL $REMOTE
+
+[fetch]
+  prune = true
+
+[include]
+  path = ~/.gitconfig.custom
+
+# For any git directory in the ~/work folder, include this custom file
+[includeIf "gitdir:~/work/"]
+  path = ~/work/.gitconfig
+
+[init]
+  defaultBranch = main
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  conflictstyle = diff3
+
+[pull]
+  rebase = true
+  default = current
+
+[push]
+  default = current
+
+[rerere]
+    autoupdate = false
+    enabled = true
+
+[user]
+  name = Joe Meissler
+  email = joe.meissler@gmail.com

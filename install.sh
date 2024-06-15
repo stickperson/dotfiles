@@ -29,4 +29,4 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # sudo vim /etc/fstab //192.168.0.1/share /home/pi/SHARE cifs username=joe,password=<pass>,vers=1.0 0 0
 fi
 
-stow aliases nvim psql ripgrep tmux wezterm zsh
+stow aliases git nvim psql ripgrep tmux wezterm zsh
