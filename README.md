@@ -1,16 +1,7 @@
-# Setting up a new laptop
+# dotfiles
 
-A not-so-ordered list of things I had to do while setting up my new laptop. Most of these things are work specific.
+My dotfiles.
 
-## Things to Install
+## Automation
 
-* Chrome and/or FF
-* Xcode
-* Homebrew
-* iTerm2. I float back and forth between using `Jetbrains Darcula` and some sort of `Nord` colorscheme. They can be found at [iterm2colorschemes](https://iterm2colorschemes.com/).
-* oh-my-zsh (after installing zsh below)
-* Docker
-
-## Packages
-
-After installing above requirements, run `./install.sh` to install required packages.
+If you would like some automation, the `install.sh` script will automatically setup dotfiles. [stow](https://www.gnu.org/software/stow/) is the only requirement. Clone this repo in a directory that is an immediate child of your home directory (e.g. `~/dotfiles`) and run `./install.sh`. This will also setup defaults and install packages I find useful. If you don't care about that and just want to install dotfiles, run `./install.sh -i`.
