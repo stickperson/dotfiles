@@ -8,6 +8,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # shellcheck disable=SC2046
   brew install $(cat brew.txt)
 
+  # shellcheck disable=SC2046
+  brew install --cask $(cat brew_casks.txt)
+
   # TODO
   # brew tap homebrew/cask-fonts && brew cask install font-hack-nerd-font
   # font-source-code-pro

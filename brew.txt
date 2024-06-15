@@ -1,7 +1,16 @@
+fd
+fzf
+gh
+git-delta
+htop
+jq
+lazygit
 nvim
 reattach-to-user-namespace
+ripgrep
 stow
 tmux
 wezterm
 zsh
 zsh-completions
+zsh-syntax-highlighting
