@@ -2,7 +2,7 @@ return {
   -- session management
   {
     "folke/persistence.nvim",
-    event = "BufReadPre",
+    lazy = false,
     -- opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
     opts = {
       options = {

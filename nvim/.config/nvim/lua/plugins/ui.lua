@@ -415,7 +415,7 @@ return {
         dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
         dashboard.button("u", "  Update plugins", ":Lazy sync<CR>"),
         dashboard.button("r", "  Recently opened files", "<cmd>Telescope oldfiles<CR>"),
-        dashboard.button("l", "  Open last session", "<cmd>RestoreSession<CR>"),
+        dashboard.button("l", "  Open last session", "<cmd>lua require('persistence').load({ last = true })<CR>"),
         dashboard.button("q", "  Quit", ":qa<CR>"),
       }
       dashboard.opts.opts.noautocmd = true

@@ -541,17 +541,6 @@ return {
   --   },
   -- },
   {
-    "SmiteshP/nvim-navbuddy",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "MunifTanjim/nui.nvim",
-    },
-    opts = { lsp = { auto_attach = true } },
-    keys = {
-      { "<leader>nb", "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
-    },
-  },
-  {
     "hedyhli/outline.nvim",
     lazy = true,
     cmd = { "Outline", "OutlineOpen" },
@@ -571,6 +560,7 @@ return {
     lazy = "VeryLazy",
     keys = {
       { "<leader>lf", "<cmd>FzfLua files<cr>" },
+      { "<leader>lg", "<cmd>FzfLua live_grep<cr>" },
     },
     -- config = true,
     -- config = function()

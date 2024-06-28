@@ -6,15 +6,25 @@ return {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          -- lsp symbol navigation for lualine
+          {
+            "SmiteshP/nvim-navic",
+            opts = { highlight = true, depth_limit = 5 },
+          },
+          -- "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim",
+        },
+        opts = { lsp = { auto_attach = true } },
+        keys = {
+          { "<leader>nb", "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
+        },
+      },
       --
       "folke/neodev.nvim",
       { "j-hui/fidget.nvim", tag = "legacy" },
-
-      -- lsp symbol navigation for lualine
-      {
-        "SmiteshP/nvim-navic",
-        opts = { highlight = true, depth_limit = 5 },
-      },
     },
     opts = {
       -- options for vim.diagnostic.config()
