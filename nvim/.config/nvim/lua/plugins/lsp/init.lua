@@ -148,7 +148,7 @@ return {
   {
     "nvimtools/none-ls.nvim",
     event = "BufReadPre",
-    dependencies = { "mason.nvim" },
+    dependencies = { "mason.nvim", "nvimtools/none-ls-extras.nvim" },
     opts = function()
       local b = require("null-ls").builtins
       return {
@@ -173,6 +173,7 @@ return {
           b.formatting.sqlfmt,
 
           -- Python
+          require("none-ls.diagnostics.flake8"),
           b.diagnostics.mypy,
           b.formatting.black,
 
