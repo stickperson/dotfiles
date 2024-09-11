@@ -517,33 +517,33 @@ return {
   },
 
   -- folding
-  -- {
-  --   "kevinhwang91/nvim-ufo",
-  --   lazy = "VeryLazy",
-  --   dependencies = { "kevinhwang91/promise-async" },
-  --   keys = {
-  --     {
-  --       "zM",
-  --       function()
-  --         require("ufo").closeAllFolds()
-  --       end,
-  --       desc = "close all folds",
-  --     },
-  --     {
-  --       "zR",
-  --       function()
-  --         require("ufo").openAllFolds()
-  --       end,
-  --       desc = "open all folds",
-  --     },
-  --   },
-  --   opts = {
-  --     ---@diagnostic disable-next-line: unused-local
-  --     provider_selector = function(bufnr, filetype, buftype)
-  --       return { "treesitter", "indent" }
-  --     end,
-  --   },
-  -- },
+  {
+    "kevinhwang91/nvim-ufo",
+    lazy = "VeryLazy",
+    dependencies = { "kevinhwang91/promise-async" },
+    keys = {
+      {
+        "zM",
+        function()
+          require("ufo").closeAllFolds()
+        end,
+        desc = "close all folds",
+      },
+      {
+        "zR",
+        function()
+          require("ufo").openAllFolds()
+        end,
+        desc = "open all folds",
+      },
+    },
+    opts = {
+      ---@diagnostic disable-next-line: unused-local
+      provider_selector = function(bufnr, filetype, buftype)
+        return { "treesitter", "indent" }
+      end,
+    },
+  },
   {
     "hedyhli/outline.nvim",
     lazy = true,
