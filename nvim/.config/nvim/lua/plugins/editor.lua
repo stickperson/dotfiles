@@ -204,7 +204,8 @@ return {
           if not require("nvim-tree.view").is_visible() then
             return
           end
-          local node = require("nvim-tree.lib").get_node_at_cursor()
+          -- local node = require("nvim-tree.lib").get_node_at_cursor()
+          local node = require("nvim-tree.api").tree.get_node_under_cursor()
 
           if node == nil then
             return
@@ -225,7 +226,8 @@ return {
           if not require("nvim-tree.view").is_visible() then
             return
           end
-          local node = require("nvim-tree.lib").get_node_at_cursor()
+          -- local node = require("nvim-tree.lib").get_node_at_cursor()
+          local node = require("nvim-tree.api").tree.get_node_under_cursor()
 
           if node == nil then
             return
@@ -394,26 +396,29 @@ return {
     config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
-      wk.register({
-        mode = { "n", "v" },
-        ["g"] = { name = "+goto" },
-        ["gz"] = { name = "+surround" },
-        ["]"] = { name = "+next" },
-        ["["] = { name = "+prev" },
-        ["<leader><tab>"] = { name = "+tabs" },
-        ["<leader>b"] = { name = "+buffer" },
-        ["<leader>c"] = { name = "+code" },
-        ["<leader>f"] = { name = "+file/find" },
-        ["<leader>g"] = { name = "+git" },
-        ["<leader>gh"] = { name = "+hunks" },
-        ["<leader>h"] = { name = "+harpoon" },
-        ["<leader>q"] = { name = "+quit/session" },
-        ["<leader>s"] = { name = "+search" },
-        ["<leader>sn"] = { name = "+noice" },
-        ["<leader>t"] = { name = "+telescope" },
-        ["<leader>u"] = { name = "+ui" },
-        ["<leader>w"] = { name = "+windows" },
-        ["<leader>x"] = { name = "+diagnostics/quickfix" },
+      wk.add({
+        {
+
+          mode = { "n", "v" },
+          { "g", name = "+goto" },
+          { "gz", name = "+surround" },
+          { "]", name = "+next" },
+          { "[", name = "+prev" },
+          { "<leader><tab>", name = "+tabs" },
+          { "<leader>b", name = "+buffer" },
+          { "<leader>c", name = "+code" },
+          { "<leader>f", name = "+file/find" },
+          { "<leader>g", name = "+git" },
+          { "<leader>gh", name = "+hunks" },
+          { "<leader>h", name = "+harpoon" },
+          { "<leader>q", name = "+quit/session" },
+          { "<leader>s", name = "+search" },
+          { "<leader>sn", name = "+noice" },
+          { "<leader>t", name = "+telescope" },
+          { "<leader>u", name = "+ui" },
+          { "<leader>w", name = "+windows" },
+          { "<leader>x", name = "+diagnostics/quickfix" },
+        },
       })
     end,
   },

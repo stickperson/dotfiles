@@ -75,7 +75,7 @@ return {
             },
           },
         },
-        tsserver = {},
+        ts_ls = {},
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
@@ -185,6 +185,8 @@ return {
           -- Terraform
           b.formatting.terraform_fmt,
           b.formatting.hclfmt,
+
+          b.formatting.prettier,
         },
       }
     end,
@@ -208,11 +210,13 @@ return {
         "hclfmt",
         "markdownlint",
         "mypy",
+        "prettier",
         "proselint",
         "shellcheck",
         "shfmt",
         "stylua",
         "write-good",
+        "yamlfmt",
       },
       ui = {
         border = "rounded",

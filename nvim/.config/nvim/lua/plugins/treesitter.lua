@@ -34,6 +34,7 @@ return {
         "query",
         "regex",
         "terraform",
+        "typescript",
         "vim",
         "yaml",
       },
@@ -103,6 +104,8 @@ return {
           goto_next_start = {
             ["]m"] = "@function.outer",
             ["]]"] = { query = "@class.outer", desc = "Next class start" },
+            ["]b"] = "@block.outer",
+            -- ["]o"] = "@loop.*",
           },
           goto_next_end = {
             ["]M"] = "@function.outer",
@@ -111,11 +114,17 @@ return {
           goto_previous_start = {
             ["[m"] = "@function.outer",
             ["[["] = "@class.outer",
-            ["[c"] = "@class.outer",
+            ["[b"] = "@block.outer",
           },
           goto_previous_end = {
             ["[M"] = "@function.outer",
             ["[]"] = "@class.outer",
+          },
+          goto_next = {
+            ["]c"] = "@conditional.outer",
+          },
+          goto_previous = {
+            ["[c"] = "@conditional.outer",
           },
         },
         swap = {
