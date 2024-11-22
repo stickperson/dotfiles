@@ -61,16 +61,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 4
   end,
 })
-
-local remember_folds = vim.api.nvim_create_augroup("RememberFolds", { clear = true })
-vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
-  pattern = { "?*" },
-  command = "mkview",
-  group = remember_folds,
-})
-
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  pattern = { "?*" },
-  command = "silent! loadview",
-  group = remember_folds,
-})
