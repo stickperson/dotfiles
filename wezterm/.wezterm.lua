@@ -1,16 +1,13 @@
 local wezterm = require("wezterm")
 
-local config = {}
-
-if wezterm.config_builder then
-	config = wezterm.config_builder()
-end
+local config = wezterm.config_builder()
 
 config.color_scheme = "Nord (base16)"
-config.color_scheme = "Catppuccin Frappe"
+-- config.color_scheme = "Catppuccin Frappe"
 -- config.color_scheme = "onenord"
--- config.color_scheme = "JetBrains Darcula"
+config.color_scheme = "JetBrains Darcula"
 -- config.color_scheme = "Tokyo Night (Gogh)"
+-- config.color_scheme = "Tokyo Night"
 
 config.font = wezterm.font("Hack Nerd Font Mono", {})
 config.font_size = 12
@@ -63,7 +60,7 @@ config.window_frame = {
 	-- Whatever font is selected here, it will have the
 	-- main font setting appended to it to pick up any
 	-- fallback fonts you may have used there.
-	-- font = wezterm.font({ family = "Hack Nerd Font Mono" }),
+	font = wezterm.font({ family = "Hack Nerd Font Mono" }),
 
 	-- The overall background color of the tab bar when
 	-- the window is focused
