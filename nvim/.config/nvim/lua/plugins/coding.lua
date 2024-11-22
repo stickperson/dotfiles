@@ -78,22 +78,19 @@ return {
       local cmp = require("cmp")
       return {
         window = {
-          completion = {
-            border = border("CmpBorder"),
-            winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-          },
+          completion = cmp.config.window.bordered(),
           documentation = {
             border = border("CmpDocBorder"),
           },
         },
         snippet = {
           expand = function(args)
+            -- Use luasnip as snippet engine. Neovim has its own built in completion engine in 0.10.0+ but it's
+            -- not as powerful as luasnip
             require("luasnip").lsp_expand(args.body)
           end,
         },
         mapping = {
-          -- ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-d>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
@@ -116,13 +113,15 @@ return {
             "s",
           }),
         },
-        sources = {
+        sources = cmp.config.sources({
           { name = "buffer" },
           { name = "luasnip" },
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
+        }, {
+
           { name = "path" },
-        },
+        }),
         experimental = {
           ghost_text = false,
         },

@@ -10,6 +10,14 @@ return {
     keys = {
       { "<c-space>", desc = "Increment selection" },
       { "<bs>", desc = "Schrink selection", mode = "x" },
+      {
+        ";",
+        function()
+          local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+          ts_repeat_move.repeat_last_move()
+        end,
+        desc = "Treesitter repeat last move",
+      },
     },
     opts = {
       highlight = { enable = true },

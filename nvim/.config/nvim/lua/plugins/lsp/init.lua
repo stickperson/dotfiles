@@ -50,6 +50,7 @@ return {
         dockerls = {},
         jedi_language_server = {},
         jsonls = {},
+        sqls = {},
         terraformls = {},
         tflint = {},
         yamlls = {
@@ -75,7 +76,7 @@ return {
             },
           },
         },
-        ts_ls = {},
+        -- ts_ls = {},
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
@@ -163,6 +164,9 @@ return {
 
           -- Lua
           b.formatting.stylua,
+
+          -- HTML etc.
+          b.formatting.prettier,
 
           -- Markdown
           b.code_actions.proselint,

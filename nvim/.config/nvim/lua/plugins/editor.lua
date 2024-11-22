@@ -242,6 +242,15 @@ return {
         end,
         desc = "Live grep in directory selected in nvim-tree",
       },
+      {
+        "<leader>ss",
+        function()
+          local query = vim.fn.input("Search for symbol: ")
+          if query and query ~= "" then
+            require("telescope.builtin").lsp_workspace_symbols({ query = query })
+          end
+        end,
+      },
       -- other
       { "<leader>tc", "<cmd>Telescope colorscheme<cr>", desc = "Change colorscheme" },
     },
@@ -570,6 +579,8 @@ return {
     keys = {
       { "<leader>lf", "<cmd>FzfLua files<cr>" },
       { "<leader>lg", "<cmd>FzfLua live_grep<cr>" },
+      { "<leader>lr", "<cmd>FzfLua lsp_references<cr>" },
+      { "<leader>ls", "<cmd>FzfLua lsp_workspace_symbols<cr>" },
     },
     -- config = true,
     -- config = function()
