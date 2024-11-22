@@ -533,7 +533,7 @@ return {
   -- folding
   {
     "kevinhwang91/nvim-ufo",
-    lazy = "VeryLazy",
+    lazy = false,
     dependencies = { "kevinhwang91/promise-async" },
     keys = {
       {
@@ -554,7 +554,6 @@ return {
     opts = {
       ---@diagnostic disable-next-line: unused-local
       provider_selector = function(bufnr, filetype, buftype)
-        -- return { "treesitter", "indent" }
         return { "lsp", "indent" }
       end,
     },
@@ -583,10 +582,18 @@ return {
       { "<leader>lr", "<cmd>FzfLua lsp_references<cr>" },
       { "<leader>ls", "<cmd>FzfLua lsp_workspace_symbols<cr>" },
     },
-    -- config = true,
-    -- config = function()
-    --   -- calling `setup` is optional for customization
-    --   require("fzf-lua").setup({})
-    -- end,
+    opts = function()
+      local actions = require("fzf-lua.actions")
+      return {
+        lsp = {
+          symbols = {
+            actions = {
+              ["ctrl-g"] = false,
+              ["ctrl-s"] = actions.grep_lgrep,
+            },
+          },
+        },
+      }
+    end,
   },
 }
