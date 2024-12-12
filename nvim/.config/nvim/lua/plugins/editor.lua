@@ -251,6 +251,15 @@ return {
           end
         end,
       },
+      {
+        "<leader>en",
+        function()
+          require("telescope.builtin").find_files({
+            cwd = vim.fn.stdpath("config"),
+          })
+        end,
+        desc = "Edit nvim config files",
+      },
       -- other
       { "<leader>tc", "<cmd>Telescope colorscheme<cr>", desc = "Change colorscheme" },
     },
@@ -265,6 +274,7 @@ return {
               "delta.side-by-side=false",
             },
           },
+          fzf = {},
         },
         defaults = {
           prompt_prefix = " ",
