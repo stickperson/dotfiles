@@ -181,7 +181,13 @@ return {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
       { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-      { "<leader>fw", "<cmd>Telescope live_grep <cr>", desc = "Find in Files (Grep)" },
+      {
+        "<leader>fw",
+        function()
+          require("plugins.telescope.find_filetype").setup()
+        end,
+        desc = "Find in files",
+      },
       { "<leader>gs", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
       { "<leader>tb", "<cmd>Telescope buffers<CR>", desc = "Terraform buffers" },
       { "<leader>td", "<cmd>Telescope terraform_doc full_name=hashicorp/aws<CR>", desc = "Terraform doc" },
