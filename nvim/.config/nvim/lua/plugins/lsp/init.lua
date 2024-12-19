@@ -114,7 +114,6 @@ return {
       local function setup(server)
         local server_opts = servers[server] or {}
         server_opts.capabilities = capabilities
-        -- vim.print(capabilities)
         if opts.setup[server] then
           if opts.setup[server](server, server_opts) then
             return

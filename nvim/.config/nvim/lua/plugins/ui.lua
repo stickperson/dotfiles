@@ -8,63 +8,12 @@ return {
     },
   },
   { "catppuccin/nvim", name = "catppuccin", priority = 1002, lazy = false },
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   priority = 1000,
-  --   lazy = false,
-  --   config = function()
-  --     vim.cmd([[colorscheme catppuccin-frappe]])
-  --   end,
-  --   opts = {
-  --     flavour = "frappe",
-  --   },
-  -- },
   {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1001,
     opts = {},
   },
-  {
-    "rcarriga/nvim-notify",
-    keys = {
-      {
-        "<leader>un",
-        function()
-          require("notify").dismiss({ silent = true, pending = true })
-        end,
-        desc = "Delete all Notifications",
-      },
-    },
-    opts = {
-      timeout = 3000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-    },
-  },
-
-  -- better vim.ui
-  {
-    "stevearc/dressing.nvim",
-    lazy = true,
-    init = function()
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
-  },
-
   -- bufferline
   {
     "akinsho/bufferline.nvim",
@@ -74,13 +23,6 @@ return {
       { "<S-Tab>", "<cmd> BufferLineCyclePrev <CR>", "goto prev buffer" },
       -- pick buffers via numbers
       { "<Bslash>", "<cmd> BufferLinePick <CR>", "Pick buffer" },
-      {
-        "<leader>d",
-        function()
-          require("mini.bufremove").delete(0, false)
-        end,
-        "Close buffer",
-      },
     },
     opts = {
       options = {
@@ -297,59 +239,6 @@ return {
       }
     end,
   },
-
-  -- indent guides for Neovim
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPost",
-    main = "ibl",
-    opts = {
-      enabled = true,
-      exclude = {
-        buftypes = {
-          "terminal",
-        },
-        filetypes = {
-          "help",
-          "terminal",
-          "starter",
-          "nvim-tree",
-          "packer",
-          "lspinfo",
-          "TelescopePrompt",
-          "TelescopeResults",
-          "mason",
-          "",
-        },
-      },
-      indent = {
-        char = "│",
-        highlight = "IndentBlanklineChar",
-      },
-    },
-  },
-
-  --  active indent guide and indent text objects
-  {
-    "echasnovski/mini.indentscope",
-    version = false, -- wait till new 0.7.0 release to put it back on semver
-    event = "BufReadPre",
-    opts = {
-      -- symbol = "▏",
-      symbol = "│",
-      options = { try_as_border = true },
-    },
-    config = function(_, opts)
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "help", "starter", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-        callback = function()
-          vim.b.miniindentscope_disable = true
-        end,
-      })
-      require("mini.indentscope").setup(opts)
-    end,
-  },
-
   -- noicer ui
   {
     "folke/noice.nvim",
@@ -390,38 +279,6 @@ return {
       { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll backward"},
     },
   },
-
-  {
-    "goolord/alpha-nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    event = "VimEnter",
-    config = function()
-      local alpha = require("alpha")
-      local dashboard = require("alpha.themes.dashboard")
-      dashboard.section.header.val = [[
-╭╮╭┬─╮╭─╮┬  ┬┬╭┬╮
-│││├┤ │ │╰┐┌╯││││
-╯╰╯╰─╯╰─╯ ╰╯ ┴┴ ┴
-
-   ༼ つ ◕_◕ ༽つ
-
-]]
-
-      dashboard.section.buttons.val = {
-        dashboard.button("f", "  Find file", ":Telescope find_files hidden=true no_ignore=true<CR>"),
-        dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
-        dashboard.button("u", "  Update plugins", ":Lazy sync<CR>"),
-        dashboard.button("r", "  Recently opened files", "<cmd>Telescope oldfiles<CR>"),
-        dashboard.button("l", "  Open last session", "<cmd>lua require('persistence').load({ last = true })<CR>"),
-        dashboard.button("q", "  Quit", ":qa<CR>"),
-      }
-      dashboard.opts.opts.noautocmd = true
-
-      alpha.setup(dashboard.opts)
-    end,
-  },
-
   -- icons
   { "nvim-tree/nvim-web-devicons", lazy = true },
 

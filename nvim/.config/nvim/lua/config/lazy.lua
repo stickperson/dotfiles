@@ -1,7 +1,4 @@
-local opt = vim.opt
-
-opt.clipboard = "unnamedplus"
-vim.g.mapleader = " "
+require("config.options")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -27,9 +24,6 @@ local default_providers = {
 for _, provider in ipairs(default_providers) do
   vim.g["loaded_" .. provider .. "_provider"] = 0
 end
-
--- example using a list of specs with the default options
-vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup({
   spec = {
@@ -66,4 +60,3 @@ require("lazy").setup({
 
 require("config.autocmds")
 require("config.keymaps")
-require("config.options")
