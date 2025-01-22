@@ -50,6 +50,7 @@ return {
         dockerls = {},
         jedi_language_server = {},
         jsonls = {},
+        rust_analyzer = {},
         sqls = {},
         terraformls = {},
         tflint = {},
