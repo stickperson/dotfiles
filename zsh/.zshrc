@@ -96,8 +96,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/d
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
-eval "$(pyenv init -)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 

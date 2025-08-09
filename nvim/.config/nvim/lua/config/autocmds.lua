@@ -61,3 +61,12 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 4
   end,
 })
+
+-- Disable treesitter incremental selection start in the command history window
+vim.api.nvim_create_augroup("_cmd_win", { clear = true })
+vim.api.nvim_create_autocmd("CmdWinEnter", {
+  callback = function()
+    vim.keymap.del("n", "<CR>", { buffer = true })
+  end,
+  group = "_cmd_win",
+})

@@ -49,10 +49,10 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = "<C-s>",
-          node_decremental = "<C-x>",
+          init_selection = "<Enter>",
+          node_incremental = "<Enter>",
+          scope_incremental = false,
+          node_decremental = "<Backspace>",
         },
       },
       rainbow = {
@@ -110,7 +110,7 @@ return {
           enable = true,
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
-            ["]m"] = "@function.outer",
+            ["]m"] = { query = "@function.outer", desc = "Next function start" },
             ["]]"] = { query = "@class.outer", desc = "Next class start" },
             ["]b"] = "@block.outer",
             -- ["]o"] = "@loop.*",
@@ -120,9 +120,9 @@ return {
             ["]["] = "@class.outer",
           },
           goto_previous_start = {
-            ["[m"] = "@function.outer",
-            ["[["] = "@class.outer",
-            ["[b"] = "@block.outer",
+            ["[m"] = { query = "@function.outer", desc = "Previous function" },
+            ["[["] = { query = "@class.outer", desc = "Previous class" },
+            ["[b"] = { query = "@block.outer", desc = "Prevous block" },
           },
           goto_previous_end = {
             ["[M"] = "@function.outer",

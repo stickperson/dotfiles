@@ -22,6 +22,27 @@ if [[ "${1}" != "-i" ]]; then
     defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool" 80
     defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Max" 80
     defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Min" 80
+    # Show all filename extensions
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+    # Show hidden files
+    defaults write com.apple.finder AppleShowAllFiles -bool true
+
+    # Show full POSIX path in Finder title bar
+    defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+    # Avoid creating .DS_Store files on network or USB volumes
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+    # Change screenshot location
+    defaults write com.apple.screencapture location -string "$HOME/Desktop/Screenshots"
+    # Enable key repeat (instead of press-and-hold for special characters)
+    defaults write -g ApplePressAndHoldEnabled -bool false
+
+    # Set fast key repeat rate
+    defaults write NSGlobalDomain KeyRepeat -int 1
+    defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
   else
     echo "Packages are only included for OSX"
   fi

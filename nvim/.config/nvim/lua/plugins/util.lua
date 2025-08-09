@@ -102,6 +102,13 @@ return {
         desc = "Toggle Scratch Buffer",
       },
       {
+        "<leader><space>",
+        function()
+          Snacks.picker.smart()
+        end,
+        desc = "Smart Find Files",
+      },
+      {
         "<leader>S",
         function()
           Snacks.scratch.select()

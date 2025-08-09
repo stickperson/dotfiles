@@ -1,5 +1,4 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(pyenv init --path)"
 
 # Added by OrbStack: command-line tools and integration
 # Comment this line if you don't want it to be added again.

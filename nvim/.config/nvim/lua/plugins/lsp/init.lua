@@ -183,6 +183,7 @@ return {
           require("none-ls.diagnostics.flake8"),
           b.diagnostics.mypy,
           b.formatting.black,
+          require("none-ls.formatting.ruff_format"),
 
           -- Shell
           b.formatting.shfmt.with({
