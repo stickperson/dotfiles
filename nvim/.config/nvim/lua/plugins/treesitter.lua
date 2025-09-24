@@ -30,7 +30,6 @@ return {
         "bash",
         -- "diagnosticsls",
         "hcl",
-        "help",
         "javascript",
         "json",
         "jsonc",

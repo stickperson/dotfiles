@@ -23,7 +23,6 @@ return {
         },
       },
       --
-      "folke/neodev.nvim",
       { "j-hui/fidget.nvim", tag = "legacy" },
     },
     opts = {
@@ -77,18 +76,6 @@ return {
             },
           },
         },
-        -- ts_ls = {},
-      },
-      -- you can do any additional lsp server setup here
-      -- return true if you don't want this server to be setup with lspconfig
-      setup = {
-        -- example to setup with typescript.nvim
-        -- tsserver = function(_, opts)
-        --   require("typescript").setup({ server = opts })
-        --   return true
-        -- end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
       },
     },
     config = function(_, opts)
@@ -112,9 +99,10 @@ return {
         lineFoldingOnly = true,
       }
 
-      local function setup(server)
-        local server_opts = servers[server] or {}
+      local function setup(server, server_opts)
+        server_opts = server_opts or servers[server] or {}
         server_opts.capabilities = capabilities
+
         if opts.setup[server] then
           if opts.setup[server](server, server_opts) then
             return
@@ -124,6 +112,7 @@ return {
             return
           end
         end
+
         require("lspconfig")[server].setup(server_opts)
       end
 
@@ -144,7 +133,6 @@ return {
       end
 
       require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
-      require("mason-lspconfig").setup_handlers({ setup })
     end,
   },
 
@@ -202,12 +190,23 @@ return {
 
   -- cmdline tools and lsp servers
   {
-
     "williamboman/mason.nvim",
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     opts = {
-      ensure_installed = {
+      ui = {
+        border = "rounded",
+      },
+    },
+    config = function(_, opts)
+      local mason = require("mason")
+      mason.setup(opts)
+
+      -- Ensure registry is refreshed
+      local mr = require("mason-registry")
+      mr.refresh() -- important to avoid "Cannot find package"
+
+      local tools = {
         "autopep8",
         "beautysh",
         "black",
@@ -225,18 +224,16 @@ return {
         "stylua",
         "write-good",
         "yamlfmt",
-      },
-      ui = {
-        border = "rounded",
-      },
-    },
-    config = function(_, opts)
-      require("mason").setup(opts)
-      local mr = require("mason-registry")
-      for _, tool in ipairs(opts.ensure_installed) do
-        local p = mr.get_package(tool)
-        if not p:is_installed() then
-          p:install()
+      }
+
+      for _, tool in ipairs(tools) do
+        if mr.is_installed(tool) == false then
+          local p = mr.get_package(tool)
+          if p then
+            p:install()
+          else
+            vim.notify("Mason cannot find package: " .. tool, vim.log.levels.WARN)
+          end
         end
       end
     end,
