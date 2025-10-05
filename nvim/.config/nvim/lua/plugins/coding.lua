@@ -69,10 +69,10 @@ return {
     version = false, -- last release is way too old
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp", -- lsp-based completions
+      "hrsh7th/cmp-buffer", -- buffer completions
       "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
+      "saadparwaiz1/cmp_luasnip", -- luasnip completions
     },
     opts = function()
       local cmp = require("cmp")
@@ -114,9 +114,9 @@ return {
           }),
         },
         sources = cmp.config.sources({
-          { name = "buffer" },
-          { name = "luasnip" },
           { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
           { name = "nvim_lua" },
         }, {
 

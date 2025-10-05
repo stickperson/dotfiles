@@ -241,13 +241,16 @@ return {
   -- noicer ui
   {
     "folke/noice.nvim",
-    event = "VeryLazy",
+    event = "VimEnter",
     opts = {
       lsp = {
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
         },
+      },
+      notify = {
+        enabled = true, -- capture vim.notify
       },
       presets = {
         long_message_to_split = true,

@@ -1,11 +1,31 @@
 return {
   {
+    "mason-org/mason-lspconfig.nvim",
+    event = "BufReadPre",
+    opts = {},
+    dependencies = {
+      "mason-org/mason.nvim",
+      "neovim/nvim-lspconfig",
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     dependencies = {
       "mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
+      {
+        -- Setup easy lua_ls setup
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+          library = {
+            -- See the configuration section for more details
+            -- Load luvit types when the `vim.uv` word is found
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
+      },
       {
         "SmiteshP/nvim-navbuddy",
         dependencies = {
@@ -14,12 +34,11 @@ return {
             "SmiteshP/nvim-navic",
             opts = { highlight = true, depth_limit = 5 },
           },
-          -- "SmiteshP/nvim-navic",
           "MunifTanjim/nui.nvim",
         },
         opts = { lsp = { auto_attach = true } },
         keys = {
-          { "<leader>nb", "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
+          { "<leader>nb", "<cmd>Navbuddy<cr>", desc = "Navbuddy", mode = "n" },
         },
       },
       --
@@ -30,6 +49,11 @@ return {
       diagnostics = {
         underline = true,
         update_in_insert = false,
+        virtual_lines = {
+          format = function(d)
+            return string.format("%s [%s]", d.message, d.source or "unknown")
+          end,
+        },
         virtual_text = { spacing = 4, prefix = "●" },
         severity_sort = true,
       },
@@ -41,41 +65,6 @@ return {
       format = {
         formatting_options = nil,
         timeout_ms = nil,
-      },
-      -- LSP Server Settings
-      servers = {
-        bashls = {},
-        diagnosticls = {},
-        dockerls = {},
-        jedi_language_server = {},
-        jsonls = {},
-        rust_analyzer = {},
-        sqls = {},
-        terraformls = {},
-        tflint = {},
-        yamlls = {
-          settings = {
-            yaml = {
-              keyOrdering = false,
-            },
-          },
-        },
-        lua_ls = {
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = { "vim" },
-              },
-              workspace = {
-                checkThirdParty = false,
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
-              telemetry = { enable = false },
-            },
-          },
-        },
       },
     },
     config = function(_, opts)
@@ -89,7 +78,6 @@ return {
 
       vim.diagnostic.config(opts.diagnostics)
 
-      local servers = opts.servers
       local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
       -- Copy/pasted from the nvim-ufo docs
       -- Tell the server the capability of foldingRange,
@@ -98,41 +86,6 @@ return {
         dynamicRegistration = false,
         lineFoldingOnly = true,
       }
-
-      local function setup(server, server_opts)
-        server_opts = server_opts or servers[server] or {}
-        server_opts.capabilities = capabilities
-
-        if opts.setup[server] then
-          if opts.setup[server](server, server_opts) then
-            return
-          end
-        elseif opts.setup["*"] then
-          if opts.setup["*"](server, server_opts) then
-            return
-          end
-        end
-
-        require("lspconfig")[server].setup(server_opts)
-      end
-
-      local mlsp = require("mason-lspconfig")
-      local available = mlsp.get_available_servers()
-
-      local ensure_installed = {} ---@type string[]
-      for server, server_opts in pairs(servers) do
-        if server_opts then
-          server_opts = server_opts == true and {} or server_opts
-          -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-          if server_opts.mason == false or not vim.tbl_contains(available, server) then
-            setup(server)
-          else
-            ensure_installed[#ensure_installed + 1] = server
-          end
-        end
-      end
-
-      require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
     end,
   },
 
@@ -171,7 +124,6 @@ return {
           require("none-ls.diagnostics.flake8"),
           b.diagnostics.mypy,
           b.formatting.black,
-          require("none-ls.formatting.ruff_format"),
 
           -- Shell
           b.formatting.shfmt.with({
@@ -208,29 +160,43 @@ return {
 
       local tools = {
         "autopep8",
+        "bash-language-server",
         "beautysh",
         "black",
         "debugpy",
+        "diagnostic-languageserver",
+        "dockerfile-language-server",
         "flake8",
         "gopls",
         "hadolint",
         "hclfmt",
+        "jedi-language-server",
+        "json-lsp",
+        "lua-language-server",
         "markdownlint",
         "mypy",
         "prettier",
         "proselint",
+        "rust-analyzer",
         "shellcheck",
         "shfmt",
+        "sqlfmt",
+        "sqls",
         "stylua",
+        "terraform",
+        "terraform-ls",
+        "tflint",
         "write-good",
         "yamlfmt",
+        "yaml-language-server",
       }
 
       for _, tool in ipairs(tools) do
-        if mr.is_installed(tool) == false then
-          local p = mr.get_package(tool)
-          if p then
-            p:install()
+        if not mr.is_installed(tool) then
+          if mr.has_package(tool) then
+            local pkg = mr.get_package(tool)
+            vim.notify("Installing tool: " .. tool, vim.log.levels.WARN)
+            pkg:install()
           else
             vim.notify("Mason cannot find package: " .. tool, vim.log.levels.WARN)
           end

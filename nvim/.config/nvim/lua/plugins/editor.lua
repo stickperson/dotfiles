@@ -507,7 +507,7 @@ return {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
-    config = {
+    opts = {
       highlight = {
         pattern = [[.*<(KEYWORDS)\s*]],
       },
