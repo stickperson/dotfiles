@@ -9,7 +9,9 @@ nvim
 reattach-to-user-namespace
 ripgrep
 stow
+tree-sitter-cli
 tmux
+wget
 wezterm
 zsh
 zsh-completions
