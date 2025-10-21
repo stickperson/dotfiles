@@ -289,17 +289,6 @@ return {
 
   -- Markdown
   {
-    "ellisonleao/glow.nvim",
-    ft = "markdown",
-    config = true,
-    cmd = { "Glow" },
-  },
-  {
-    "ivanjermakov/troublesum.nvim",
-    config = true,
-    event = "VeryLazy",
-  },
-  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && yarn install",
@@ -307,5 +296,11 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
+  },
+  -- show diagnostics summary in top right
+  {
+    "ivanjermakov/troublesum.nvim",
+    config = true,
+    event = "VeryLazy",
   },
 }
