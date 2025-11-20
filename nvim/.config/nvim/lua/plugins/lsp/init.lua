@@ -123,7 +123,6 @@ return {
 
           -- Python
           require("none-ls.diagnostics.flake8"),
-          b.diagnostics.mypy,
           b.formatting.black,
 
           -- Shell
@@ -163,7 +162,7 @@ return {
 
       local tools = {
         "autopep8",
-        -- "basedpyright",
+        "basedpyright",
         "bash-language-server",
         "beautysh",
         "black",
@@ -174,11 +173,9 @@ return {
         "gopls",
         "hadolint",
         "hclfmt",
-        "jedi-language-server",
         "json-lsp",
         "lua-language-server",
         "markdownlint",
-        "mypy",
         "prettier",
         "proselint",
         "rust-analyzer",
