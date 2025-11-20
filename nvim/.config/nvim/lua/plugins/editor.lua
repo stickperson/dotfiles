@@ -53,10 +53,10 @@ return {
   {
     "kyazdani42/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    keys = {
-      -- toggle
-      { "<leader>e", "<cmd> NvimTreeToggle <CR>", desc = "toggle nvimtree" },
-    },
+    -- keys = {
+    --   -- toggle
+    --   { "<leader>e", "<cmd> NvimTreeToggle <CR>", desc = "toggle nvimtree" },
+    -- },
     opts = {
       live_filter = {
         prefix = "[FILTER]: ",
@@ -179,8 +179,6 @@ return {
       -- find
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-      { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       {
         "<leader>fw",
         function()
@@ -191,19 +189,10 @@ return {
       { "<leader>gs", "<cmd>Telescope grep_string<CR>", desc = "Grep string" },
       { "<leader>tb", "<cmd>Telescope buffers<CR>", desc = "Terraform buffers" },
       { "<leader>td", "<cmd>Telescope terraform_doc full_name=hashicorp/aws<CR>", desc = "Terraform doc" },
-      { "<leader>tk", "<cmd>Telescope keymaps<CR>", desc = "Telescope keymaps" },
 
       -- search
-      { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
-      { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-      { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-      { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-      { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-      { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
       { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
-      { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
       {
         "<leader>tf",
         function()
@@ -501,25 +490,11 @@ return {
       { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
     },
   },
-
-  -- todo comments
   {
     "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    event = "BufReadPost",
-    opts = {
-      highlight = {
-        pattern = [[.*<(KEYWORDS)\s*]],
-      },
-    },
-    -- stylua: ignore
-    keys = {
-      { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
-      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
-    },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    lazy = false,
+    opts = {},
   },
 
   -- terminal

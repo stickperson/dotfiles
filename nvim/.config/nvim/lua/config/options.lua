@@ -85,6 +85,11 @@ vim.lsp.set_log_level("OFF")
 
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | checktime | endif",
-  pattern = { "*" },
+  pattern = "*",
+  callback = function()
+    -- ONLY run checktime when the cmdline window is NOT open
+    if vim.fn.getcmdwintype() == "" then
+      vim.cmd("checktime")
+    end
+  end,
 })

@@ -23,6 +23,7 @@ return {
             -- See the configuration section for more details
             -- Load luvit types when the `vim.uv` word is found
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            { path = "snacks.nvim", words = { "Snacks" } },
           },
         },
       },
@@ -54,7 +55,7 @@ return {
             return string.format("%s [%s]", d.message, d.source or "unknown")
           end,
         },
-        virtual_text = { spacing = 4, prefix = "●" },
+        -- virtual_text = { spacing = 4, prefix = "●" },
         severity_sort = true,
       },
       -- Automatically format on save
@@ -146,6 +147,8 @@ return {
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     opts = {
+      PATH = "append",
+
       ui = {
         border = "rounded",
       },
@@ -160,6 +163,7 @@ return {
 
       local tools = {
         "autopep8",
+        -- "basedpyright",
         "bash-language-server",
         "beautysh",
         "black",
