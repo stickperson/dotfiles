@@ -94,13 +94,13 @@ return {
         end,
         desc = "Dap step into",
       },
-      {
-        "<leader>do",
-        function()
-          require("dap").step_out()
-        end,
-        desc = "Dap step out",
-      },
+      -- {
+      --   "<leader>do",
+      --   function()
+      --     require("dap").step_out()
+      --   end,
+      --   desc = "Dap step out",
+      -- },
     },
   },
   {

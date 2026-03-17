@@ -67,6 +67,105 @@ return {
         formatting_options = nil,
         timeout_ms = nil,
       },
+<<<<<<< Updated upstream
+||||||| Stash base
+      -- LSP Server Settings
+      servers = {
+        bashls = {},
+        diagnosticls = {},
+        dockerls = {},
+        jedi_language_server = {},
+        jsonls = {},
+        rust_analyzer = {},
+        sqls = {},
+        terraformls = {},
+        tflint = {},
+        yamlls = {
+          settings = {
+            yaml = {
+              keyOrdering = false,
+            },
+          },
+        },
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                checkThirdParty = false,
+              },
+              completion = {
+                callSnippet = "Replace",
+              },
+              telemetry = { enable = false },
+            },
+          },
+        },
+        -- ts_ls = {},
+      },
+      -- you can do any additional lsp server setup here
+      -- return true if you don't want this server to be setup with lspconfig
+      setup = {
+        -- example to setup with typescript.nvim
+        -- tsserver = function(_, opts)
+        --   require("typescript").setup({ server = opts })
+        --   return true
+        -- end,
+        -- Specify * to use this function as a fallback for any server
+        -- ["*"] = function(server, opts) end,
+      },
+=======
+      -- LSP Server Settings
+      servers = {
+        bashls = {},
+        diagnosticls = {},
+        dockerls = {},
+        groovyls = {},
+        jedi_language_server = {},
+        jsonls = {},
+        rust_analyzer = {},
+        sqls = {},
+        terraformls = {},
+        tflint = {},
+        yamlls = {
+          settings = {
+            yaml = {
+              keyOrdering = false,
+            },
+          },
+        },
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                checkThirdParty = false,
+              },
+              completion = {
+                callSnippet = "Replace",
+              },
+              telemetry = { enable = false },
+            },
+          },
+        },
+        -- ts_ls = {},
+      },
+      -- you can do any additional lsp server setup here
+      -- return true if you don't want this server to be setup with lspconfig
+      setup = {
+        -- example to setup with typescript.nvim
+        -- tsserver = function(_, opts)
+        --   require("typescript").setup({ server = opts })
+        --   return true
+        -- end,
+        -- Specify * to use this function as a fallback for any server
+        -- ["*"] = function(server, opts) end,
+      },
+>>>>>>> Stashed changes
     },
     config = function(_, opts)
       -- setup autoformat
@@ -87,6 +186,84 @@ return {
         dynamicRegistration = false,
         lineFoldingOnly = true,
       }
+<<<<<<< Updated upstream
+||||||| Stash base
+
+      local function setup(server)
+        local server_opts = servers[server] or {}
+        server_opts.capabilities = capabilities
+        if opts.setup[server] then
+          if opts.setup[server](server, server_opts) then
+            return
+          end
+        elseif opts.setup["*"] then
+          if opts.setup["*"](server, server_opts) then
+            return
+          end
+        end
+        require("lspconfig")[server].setup(server_opts)
+      end
+
+      local mlsp = require("mason-lspconfig")
+      local available = mlsp.get_available_servers()
+
+      local ensure_installed = {} ---@type string[]
+      for server, server_opts in pairs(servers) do
+        if server_opts then
+          server_opts = server_opts == true and {} or server_opts
+          -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
+          if server_opts.mason == false or not vim.tbl_contains(available, server) then
+            setup(server)
+          else
+            ensure_installed[#ensure_installed + 1] = server
+          end
+        end
+      end
+
+      require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
+      require("mason-lspconfig").setup_handlers({ setup })
+=======
+
+      local function setup(server)
+        local server_opts = servers[server] or {}
+        server_opts.capabilities = capabilities
+        if opts.setup[server] then
+          if opts.setup[server](server, server_opts) then
+            return
+          end
+        elseif opts.setup["*"] then
+          if opts.setup["*"](server, server_opts) then
+            return
+          end
+        end
+        vim.lsp.config(server, server_opts)
+        vim.lsp.enable(server)
+      end
+
+      local mlsp = require("mason-lspconfig")
+      local available = mlsp.get_available_servers()
+
+      -- Set capabilities globally for all servers
+      vim.lsp.config("*", { capabilities = capabilities })
+
+      local ensure_installed = {} ---@type string[]
+      for server, server_opts in pairs(servers) do
+        if server_opts then
+          server_opts = server_opts == true and {} or server_opts
+          if server_opts.mason == false or not vim.tbl_contains(available, server) then
+            setup(server)
+          else
+            ensure_installed[#ensure_installed + 1] = server
+            setup(server)
+          end
+        end
+      end
+
+      require("mason-lspconfig").setup({
+        ensure_installed = ensure_installed,
+        automatic_enable = false,
+      })
+>>>>>>> Stashed changes
     end,
   },
 
@@ -146,8 +323,51 @@ return {
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     opts = {
+<<<<<<< Updated upstream
       PATH = "append",
 
+||||||| Stash base
+      ensure_installed = {
+        "autopep8",
+        "beautysh",
+        "black",
+        "debugpy",
+        "flake8",
+        "gopls",
+        "hadolint",
+        "hclfmt",
+        "markdownlint",
+        "mypy",
+        "prettier",
+        "proselint",
+        "shellcheck",
+        "shfmt",
+        "stylua",
+        "write-good",
+        "yamlfmt",
+      },
+=======
+      ensure_installed = {
+        "autopep8",
+        "jedi-language-server",
+        "beautysh",
+        "black",
+        "debugpy",
+        "flake8",
+        "gopls",
+        "hadolint",
+        "hclfmt",
+        "markdownlint",
+        "mypy",
+        "prettier",
+        "proselint",
+        "shellcheck",
+        "shfmt",
+        "stylua",
+        "write-good",
+        "yamlfmt",
+      },
+>>>>>>> Stashed changes
       ui = {
         border = "rounded",
       },

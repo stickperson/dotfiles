@@ -33,11 +33,11 @@
   prune = true
 
 [include]
-  path = ~/.gitconfig.custom
+  path = ~/.gitconfig_custom
 
 # For any git directory in the ~/work folder, include this custom file
-[includeIf "gitdir:~/work/"]
-  path = ~/work/.gitconfig
+[includeIf "gitdir:~/projects/personal"]
+  path = ~/.gitconfig_personal
 
 [init]
   defaultBranch = main
@@ -46,7 +46,11 @@
   diffFilter = delta --color-only
 
 [merge]
-  conflictstyle = diff3
+  ; conflictstyle = diff3
+  tool = fugitive
+
+[mergetool "fugitive"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
 [pull]
   rebase = true
