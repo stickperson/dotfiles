@@ -53,4 +53,4 @@ if ! command -v stow &>/dev/null; then
   return 1
 fi
 
-stow aliases bin git nvim nvim_new psql ripgrep tmux wezterm zsh
+stow aliases bin git nvim psql ripgrep tmux wezterm zsh
