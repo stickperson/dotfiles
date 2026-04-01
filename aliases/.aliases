@@ -2,6 +2,7 @@
 alias acl='ack'
 alias bim='vim'
 alias c='clear'
+alias claude="FORCE_COLOR=1 claude"
 alias cll='clear & ls -lah'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias curlJson='curl -H "Content-Type: application/json" -X POST'
