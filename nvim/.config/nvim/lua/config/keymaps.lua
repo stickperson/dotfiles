@@ -50,7 +50,12 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 
 -- Redraw / clear hlsearch / diff update
-map("n", "<leader>ur", "<cmd>nohlsearch<bar>diffupdate<bar>normal! <C-L><cr>", { desc = "Redraw / clear hlsearch / diff update" })
+map(
+  "n",
+  "<leader>ur",
+  "<cmd>nohlsearch<bar>diffupdate<bar>normal! <C-L><cr>",
+  { desc = "Redraw / clear hlsearch / diff update" }
+)
 
 -- New file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New file" })

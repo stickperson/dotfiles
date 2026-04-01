@@ -40,8 +40,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
-    "checkhealth", "help", "lspinfo", "man", "notify",
-    "qf", "query", "startuptime", "tsplayground",
+    "checkhealth",
+    "help",
+    "lspinfo",
+    "man",
+    "notify",
+    "qf",
+    "query",
+    "startuptime",
+    "tsplayground",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
