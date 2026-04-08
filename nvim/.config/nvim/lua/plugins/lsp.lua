@@ -136,8 +136,13 @@ return {
         jsonls = {},
         rust_analyzer = {},
         sqls = {},
-        terraformls = {},
-        tflint = {},
+        terraformls = {
+          -- Disable semantic tokens: the payload freezes Neovim on large .tf files
+          capabilities = { textDocument = { semanticTokens = vim.NIL } },
+        },
+        tflint = {
+          capabilities = { textDocument = { semanticTokens = vim.NIL } },
+        },
         yamlls = {
           settings = {
             yaml = { keyOrdering = false },
