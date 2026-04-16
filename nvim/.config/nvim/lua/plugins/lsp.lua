@@ -131,7 +131,6 @@ return {
       local servers = {
         bashls = {},
         dockerls = {},
-        groovyls = {},
         jedi_language_server = {},
         jsonls = {},
         rust_analyzer = {},
