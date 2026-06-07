@@ -1,4 +1,4 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+[[ "$(uname)" == "Darwin" ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Added by OrbStack: command-line tools and integration
 # Comment this line if you don't want it to be added again.
