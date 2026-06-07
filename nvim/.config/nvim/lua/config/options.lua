@@ -54,6 +54,19 @@ opt.updatetime = 200
 opt.timeoutlen = 300
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
+if vim.fn.has("mac") == 0 then
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    },
+  }
+end
 
 -- Folding (nvim-ufo)
 opt.foldcolumn = "1"

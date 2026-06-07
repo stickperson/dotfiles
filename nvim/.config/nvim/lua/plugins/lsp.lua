@@ -1,3 +1,5 @@
+local is_mac = vim.fn.has("mac") == 1
+
 return {
   -- Mason: installer for LSP servers, linters, formatters
   {
@@ -12,7 +14,6 @@ return {
         "prettier",
         "shfmt",
         "hclfmt",
-        "sqlfmt",
         "markdownlint",
         -- Linters (used by nvim-lint)
         "flake8",
@@ -25,6 +26,9 @@ return {
       ui = { border = "rounded" },
     },
     config = function(_, opts)
+      if is_mac then
+        table.insert(opts.ensure_installed, "sqlfmt")
+      end
       require("mason").setup(opts)
       local mr = require("mason-registry")
       local function ensure_installed()
@@ -134,7 +138,6 @@ return {
         jedi_language_server = {},
         jsonls = {},
         rust_analyzer = {},
-        sqls = {},
         terraformls = {
           -- Disable semantic tokens: the payload freezes Neovim on large .tf files
           capabilities = { textDocument = { semanticTokens = vim.NIL } },
@@ -158,6 +161,10 @@ return {
           },
         },
       }
+
+      if is_mac then
+        servers.sqls = {}
+      end
 
       -- Register configs with native vim.lsp.config
       for server, config in pairs(servers) do
