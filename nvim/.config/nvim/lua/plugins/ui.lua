@@ -146,7 +146,7 @@ return {
         },
       },
       popupmenu = {
-        backend = "cmp",
+        enabled = false,
       },
       presets = {
         bottom_search = true,

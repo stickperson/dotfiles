@@ -7,8 +7,10 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     config = function()
-      -- v1.x: setup() only configures install_dir
-      require("nvim-treesitter").setup()
+      -- v1.x: setup() only configures install_dir and auto_install
+      require("nvim-treesitter").setup({
+        auto_install = true,
+      })
 
       -- Enable highlighting for all buffers (v1.x no longer does this automatically)
       vim.api.nvim_create_autocmd("FileType", {
@@ -20,7 +22,9 @@ return {
       -- Install parsers
       require("nvim-treesitter").install({
         "bash",
+        "css",
         "hcl",
+        "html",
         "javascript",
         "json",
         "lua",
@@ -30,10 +34,13 @@ return {
         "python",
         "query",
         "regex",
+        "scss",
         "terraform",
+        "tsx",
         "typescript",
         "vim",
         "vimdoc",
+        "vue",
         "yaml",
       })
     end,

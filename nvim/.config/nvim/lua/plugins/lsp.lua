@@ -60,6 +60,9 @@ return {
       "saghen/blink.cmp", -- ensures capabilities are set before servers start
     },
     config = function()
+      -- Keep LSP log from growing unbounded; errors are still captured
+      vim.lsp.set_log_level("ERROR")
+
       -- Diagnostic display
       vim.diagnostic.config({
         underline = true,
@@ -147,7 +150,25 @@ return {
         },
         yamlls = {
           settings = {
-            yaml = { keyOrdering = false },
+            yaml = {
+              -- Ignore Cloudformation tags
+              customTags = {
+                "!Ref",
+                "!Sub scalar",
+                "!Sub sequence",
+                "!GetAtt",
+                "!GetAtt sequence",
+                "!Join sequence",
+                "!Select sequence",
+                "!If sequence",
+                "!Equals sequence",
+                "!FindInMap sequence",
+                "!ImportValue",
+                "!Condition",
+                "!Base64",
+              },
+              keyOrdering = false,
+            },
           },
         },
         lua_ls = {
