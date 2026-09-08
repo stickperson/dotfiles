@@ -32,13 +32,6 @@
 [fetch]
   prune = true
 
-[include]
-  path = ~/.gitconfig_custom
-
-# For any git directory in the ~/work folder, include this custom file
-[includeIf "gitdir:~/projects/personal"]
-  path = ~/.gitconfig_personal
-
 [init]
   defaultBranch = main
 
@@ -60,9 +53,16 @@
   default = current
 
 [rerere]
-    autoupdate = false
-    enabled = true
+  autoupdate = false
+  enabled = true
 
 [user]
   name = Joe Meissler
   email = joe.meissler@gmail.com
+
+[include]
+  path = /Users/jmeissler/.gitconfig_custom
+
+# For any git directory in the ~/projects/personal folder, include this custom file
+[includeIf "gitdir:~/projects/personal"]
+  path = ~/.gitconfig_personal
