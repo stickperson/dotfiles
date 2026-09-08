@@ -19,7 +19,7 @@ RPROMPT='%{$fg[cyan]%}%n%{$reset_color%}'
 # Sources
 source "$HOME/.aliases"
 source ~/.zsh/functions 2>/dev/null
-[ -f ~/.zsh/work ] && source ~/.zsh/work
+[ -f ~/.zsh/work.zsh ] && source ~/.zsh/work.zsh
 
 # Vi cursor shape
 function zle-keymap-select {
@@ -47,7 +47,7 @@ precmd() {
 }
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # Completions
 fpath+=${ZDOTDIR:-~}/.zsh_functions
