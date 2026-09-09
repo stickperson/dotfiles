@@ -34,24 +34,6 @@ return {
         open = function(url)
           vim.fn.setreg("+", url)
         end, -- copy, don't open browser
-        -- Snacks.config.merge REPLACES list values (snacks/init.lua:76-82),
-        -- so the 13 upstream defaults must be restated alongside the alias rewrite.
-        remote_patterns = {
-          { "github%-stickperson", "github.com" },
-          { "^(https?://.*)%.git$", "%1" },
-          { "^git@(.+):(.+)%.git$", "https://%1/%2" },
-          { "^git@(.+):(.+)$", "https://%1/%2" },
-          { "^git@(.+)/(.+)$", "https://%1/%2" },
-          { "^org%-%d+@(.+):(.+)%.git$", "https://%1/%2" },
-          { "^ssh://git@(.*)$", "https://%1" },
-          { "^ssh://([^:/]+)(:%d+)/(.*)$", "https://%1/%3" },
-          { "^ssh://([^/]+)/(.*)$", "https://%1/%2" },
-          { "ssh%.dev%.azure%.com/v3/(.*)/(.*)$", "dev.azure.com/%1/_git/%2" },
-          { "^https://%w*@(.*)", "https://%1" },
-          { "^git@(.*)", "https://%1" },
-          { ":%d+", "" },
-          { "%.git$", "" },
-        },
         -- dict, so this deep-merges with the upstream github/gitlab/bitbucket entries
         url_patterns = {
           ["github%.rp%-core%.com"] = {
