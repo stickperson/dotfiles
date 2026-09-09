@@ -85,30 +85,6 @@ return {
     },
   },
 
-  -- Copy shareable links to code
-  {
-    "ruifm/gitlinker.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    keys = {
-      {
-        "<leader>gy",
-        function()
-          require("gitlinker").get_buf_range_url("n")
-        end,
-        desc = "Copy git link",
-      },
-      {
-        "<leader>gy",
-        function()
-          require("gitlinker").get_buf_range_url("v")
-        end,
-        mode = "v",
-        desc = "Copy git link",
-      },
-    },
-    opts = {},
-  },
-
   -- GitHub PRs and issues inside neovim
   {
     "pwntester/octo.nvim",
