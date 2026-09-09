@@ -6,7 +6,7 @@ if [[ "${1}" != "-i" ]]; then
   if [[ "$OSTYPE" == "darwin"* ]]; then
     if ! command -v brew &>/dev/null; then
       echo "Must install homebrew first"
-      return 1
+      exit 1
     fi
     # shellcheck disable=SC2046
     brew install $(cat brew.txt)
@@ -50,8 +50,11 @@ fi
 
 if ! command -v stow &>/dev/null; then
   echo "stow must be installed"
-  return 1
+  exit 1
 fi
 
-stow aliases git nvim psql ripgrep tmux wezterm zsh
-stow -d bin/.local -t ~/.local scripts
+# ~/.local must pre-exist so stow folds at scripts/ rather than
+# symlinking ~/.local itself, which would capture bin/ share/ state/
+mkdir -p "$HOME/.local"
+
+stow aliases bin git nvim psql ripgrep tmux wezterm zsh
