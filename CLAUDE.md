@@ -19,7 +19,12 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/). E
 stow aliases          # or: bin git nvim psql ripgrep tmux wezterm zsh
 ```
 
-The full stow invocation (from `install.sh`): `stow aliases bin git nvim psql ripgrep tmux wezterm zed zsh`
+The full stow invocation (from `install.sh`): `stow aliases bin git nvim psql ripgrep tmux wezterm zsh`
+
+`install.sh` runs `mkdir -p "$HOME/.local"` before stowing. `~/.local` must pre-exist so
+stow's tree-folding collapses at `~/.local/scripts` (a symlink to
+`bin/.local/scripts`) instead of symlinking `~/.local` itself, which would capture the
+unmanaged `~/.local/{bin,share,state}` directories into the repo.
 
 ## Stow Package Structure
 
