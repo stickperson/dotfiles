@@ -23,7 +23,7 @@ nvim_new/
 │       ├── lsp.lua              # LSP, Mason, lazydev
 │       ├── format.lua           # conform.nvim (format), nvim-lint (lint)
 │       ├── treesitter.lua       # Syntax, text objects
-│       ├── git.lua              # Gitsigns, fugitive, diffview, gitlinker, octo
+│       ├── git.lua              # Gitsigns, fugitive, diffview, octo
 │       ├── dap.lua              # Debugger (DAP + Python)
 │       └── util.lua             # Snacks, persistence, obsidian
 └── after/ftplugin/
@@ -393,8 +393,9 @@ Side-by-side diff view and full file history browser.
 | `<leader>gdc` | Close diffview |
 | `<leader>gdh` | File history |
 
-#### `ruifm/gitlinker.nvim` — Shareable git links
-Generate a permalink to the current file/selection on GitHub/GitLab.
+#### `Snacks.gitbrowse` — Shareable git links
+Generate a permalink to the current file/selection on GitHub/GitLab, copied to
+the clipboard. Configured in `lua/plugins/util.lua`.
 
 | Key | Mode | Action |
 |---|---|---|

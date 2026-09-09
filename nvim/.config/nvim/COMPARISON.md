@@ -412,7 +412,7 @@ Toggles run immediately when snacks loads (since `lazy = false`), and use the `.
 | `rmehri01/onenord.nvim` (priority 1001) | Colorscheme | same, explicit default |
 | `catppuccin/nvim` (lazy=false) | Colorscheme | same, lazy=true |
 | `numToStr/Comment.nvim` | Comments | same |
-| `ruifm/gitlinker.nvim` (lazy=false) | Git links | same, properly lazy |
+| `ruifm/gitlinker.nvim` (lazy=false) | Git links | replaced by Snacks.gitbrowse |
 | `pwntester/octo.nvim` (lazy=false) | GitHub in nvim | same, cmd-lazy |
 
 ## Plugins in New But Not Old
