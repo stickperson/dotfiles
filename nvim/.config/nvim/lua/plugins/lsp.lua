@@ -89,6 +89,13 @@ return {
             vim.keymap.set("n", keys, fn, { buffer = buf, desc = "LSP: " .. desc })
           end
 
+          -- nvim-navbuddy only drives its own tree UI; attach navic's public
+          -- API directly so lualine's breadcrumb component has data.
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.server_capabilities.documentSymbolProvider then
+            require("nvim-navic").attach(client, buf)
+          end
+
           -- Navigation via snacks picker
           map("gd", function()
             Snacks.picker.lsp_definitions()
